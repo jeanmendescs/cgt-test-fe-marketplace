@@ -2,7 +2,7 @@ import "./App.scss";
 import pictureA from "./a.jpg";
 import pictureB from "./b.jpg";
 
-function cartItems() {
+function cartItems(): string[] {
   return [];
 }
 
@@ -46,7 +46,7 @@ function App() {
           </button>
 
           <div>
-            <img src={pictureB} width={640} />
+            <img src={pictureB} width={640} alt="Product B" />
           </div>
         </div>
       )}
@@ -60,7 +60,7 @@ function App() {
           </button>
 
           <div>
-            <img src={pictureA} width={640} />
+            <img src={pictureA} width={640} alt="Product A" />
           </div>
         </div>
       )}
@@ -79,3 +79,4 @@ function App() {
 }
 
 export default App;
+
