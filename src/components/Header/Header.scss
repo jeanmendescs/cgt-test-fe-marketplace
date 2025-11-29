@@ -1,0 +1,57 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-bottom: 2px solid #e94560;
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo {
+  font-family: "Courier New", monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e94560;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.header__menu-item {
+  position: relative;
+}
+
+.header__link {
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  color: #eaeaea;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #e94560;
+  }
+}
+
+.header__link--cart {
+  background: #e94560;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
