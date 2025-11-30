@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Header.scss";
+import Cart from "./Cart/Cart";
 
 interface HeaderProps {
   cartItemsCount?: number;
@@ -21,16 +22,11 @@ function Header({ cartItemsCount = 0 }: HeaderProps) {
               Home
             </Link>
           </li>
-          <li className="header__menu-item">
-            <Link to="/cart" className="header__link header__link--cart">
-              Cart ({cartItemsCount})
-            </Link>
-          </li>
         </ul>
+        <Cart />
       </nav>
     </header>
   );
 }
 
 export default Header;
-

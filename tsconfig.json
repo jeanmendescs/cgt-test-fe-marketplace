@@ -27,6 +27,12 @@
       "@pages/*": [
         "pages/*"
       ],
+      "@store/*": [
+        "store/*"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ]
     }
   },
   "include": [
