@@ -8,6 +8,7 @@ module.exports = {
       "@store": path.resolve(__dirname, "src/store"),
       "@assets": path.resolve(__dirname, "src/assets"),
       "@data": path.resolve(__dirname, "src/data"),
+      "@contexts": path.resolve(__dirname, "src/contexts"),
     },
     configure: (webpackConfig) => {
       // Find the existing rule for SVG files

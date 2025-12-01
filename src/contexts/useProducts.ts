@@ -1,7 +1,7 @@
-import PRODUCTS from "@data/products.json";
+import PRODUCTS from "@data/PRODUCTS.json";
 import { TProduct } from "@store/cartStore";
 
-export const useProducts = () => {
+const useProducts = () => {
   const products = PRODUCTS as TProduct[];
 
   const getProductById = (id: number): TProduct | undefined => {
@@ -14,3 +14,4 @@ export const useProducts = () => {
   };
 };
 
+export default useProducts;
