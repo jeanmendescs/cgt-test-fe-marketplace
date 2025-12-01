@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-import "./Header.scss";
 import Cart from "./Cart/Cart";
+import "./Header.scss";
 
-interface HeaderProps {
-  cartItemsCount?: number;
-}
-
-function Header({ cartItemsCount = 0 }: HeaderProps) {
+function Header() {
   return (
     <header className="header">
       <div className="header__brand">
