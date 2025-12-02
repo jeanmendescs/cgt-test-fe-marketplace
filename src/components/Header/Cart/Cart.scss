@@ -1,3 +1,5 @@
+@use "src/styles/base/colors" as *;
+
 .cart__icon {
   width: 2rem;
   height: 2rem;
@@ -7,7 +9,7 @@
 
   path,
   circle {
-    fill: white;
+    fill: $white-color;
   }
 
   &:hover {
@@ -19,8 +21,8 @@
   position: absolute;
   top: 12px;
   right: 14px;
-  color: black;
-  background: #19bcc9;
+  color: $black-color;
+  background: $blue-color;
   border-radius: 50%;
   padding: 0.25rem;
   font-size: 0.75rem;

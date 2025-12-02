@@ -1,3 +1,5 @@
+@use "src/styles/base/colors" as *;
+
 .home {
   background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
 }
@@ -18,7 +20,7 @@
   font-family: "Courier New", monospace;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: bold;
-  color: #e94560;
+  color: $red-color;
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-bottom: 0.5rem;
@@ -29,7 +31,7 @@
 .home__subtitle {
   font-family: "Courier New", monospace;
   font-size: 1.1rem;
-  color: #19bcc9;
+  color: $blue-color;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
