@@ -38,6 +38,9 @@
       ],
       "@contexts/*": [
         "contexts/*"
+      ],
+      "@styles/*": [
+        "styles/*"
       ]
     }
   },

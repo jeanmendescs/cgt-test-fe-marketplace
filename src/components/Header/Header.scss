@@ -1,4 +1,4 @@
-@use "src/styles/base/colors" as *;
+@use "@styles/base/colors" as *;
 
 .header {
   display: flex;
@@ -15,7 +15,6 @@
 }
 
 .header__logo {
-  font-family: "Courier New", monospace;
   font-size: 1.5rem;
   font-weight: bold;
   color: $red-color;
@@ -31,15 +30,11 @@
 .header__menu {
   display: flex;
   gap: 2rem;
+  margin-right: 2rem;
   list-style: none;
 }
 
-.header__menu-item {
-  position: relative;
-}
-
 .header__link {
-  font-family: "Courier New", monospace;
   font-size: 1rem;
   color: $gray-color;
   text-transform: uppercase;

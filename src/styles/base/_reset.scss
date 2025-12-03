@@ -1,4 +1,6 @@
 /* CSS Reset */
+@use "@styles/base/fonts" as *;
+
 *,
 *::before,
 *::after {
@@ -10,7 +12,8 @@
 body {
   min-height: 100vh;
   line-height: 1.5;
-  background-color: #f0f0f0;
+  background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  font-family: $font-family-primary;
 }
 
 img,
