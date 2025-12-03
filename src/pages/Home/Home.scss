@@ -1,4 +1,4 @@
-@use "src/styles/base/colors" as *;
+@use "@styles/base/colors" as *;
 
 .home {
   background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
@@ -17,19 +17,17 @@
 }
 
 .home__title {
-  font-family: "Courier New", monospace;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: bold;
   color: $red-color;
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(233, 69, 96, 0.5), 0 0 20px rgba(233, 69, 96, 0.3),
-    0 0 30px rgba(233, 69, 96, 0.2);
+  text-shadow: 0 0 10px rgba($red-color, 0.5), 0 0 20px rgba($red-color, 0.3),
+    0 0 30px rgba($red-color, 0.2);
 }
 
 .home__subtitle {
-  font-family: "Courier New", monospace;
   font-size: 1.1rem;
   color: $blue-color;
   text-transform: uppercase;

@@ -1,8 +1,8 @@
 import useCartStore, { TProduct } from "@store/cartStore";
+import "./Product.scss";
 
 type TProductProps = TProduct & {
   quantityInCart: number;
-  index: number;
 };
 
 function Product({
@@ -13,25 +13,28 @@ function Product({
   name,
   price,
   quantityInCart,
-  index,
 }: TProductProps) {
-  const { addToCart } = useCartStore();
+  const addToCart = useCartStore((state) => state.addToCart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const isInCart = quantityInCart > 0;
+
+  const handleClick = () => {
+    if (isInCart) {
+      removeFromCart(id);
+    } else {
+      addToCart(id);
+    }
+  };
 
   return (
-    <article
-      key={id}
-      className="product"
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
+    <article key={id} className="product">
       <div className="product__image-wrapper">
         <img
           src={require(`@assets/images/${image}`)}
           alt={alt}
           className="product__image"
         />
-        {quantityInCart > 0 && (
-          <span className="product__badge">{quantityInCart}</span>
-        )}
+        {isInCart && <span className="product__badge">{quantityInCart}</span>}
       </div>
 
       <div className="product__content">
@@ -44,8 +47,8 @@ function Product({
 
         <div className="product__footer">
           <span className="product__price">${price.toFixed(2)}</span>
-          <button className="product__button" onClick={() => addToCart(id)}>
-            Add to Cart
+          <button className="product__button" onClick={handleClick}>
+            {isInCart ? "Remove" : "Add to Cart"}
           </button>
         </div>
       </div>

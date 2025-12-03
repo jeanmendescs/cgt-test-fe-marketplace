@@ -9,16 +9,15 @@ function Products() {
 
   return (
     <div className="products">
-      {products.map((product, index) => {
+      {products.map((product) => {
         const cartItem = getItemById(product.id);
         const quantityInCart = cartItem?.quantity || 0;
 
         return (
           <Product
             key={product.id}
-            {...product}
             quantityInCart={quantityInCart}
-            index={index}
+            {...product}
           />
         );
       })}
