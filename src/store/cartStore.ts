@@ -19,7 +19,6 @@ type TCartState = {
   items: TCartItem[];
   addToCart: (productId: number) => void;
   removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
   getItemById: (productId: number) => TCartItem | undefined;
   getTotalQuantity: () => number;
   clearCart: () => void;
@@ -71,19 +70,6 @@ const useCartStore = create<TCartState>((set, get) => {
           items: state.items.filter((item) => item.productId !== productId),
         };
       });
-    },
-
-    updateQuantity: (productId: number, quantity: number) => {
-      if (quantity <= 0) {
-        get().removeFromCart(productId);
-        return;
-      }
-
-      set((state) => ({
-        items: state.items.map((item) =>
-          item.productId === productId ? { ...item, quantity } : item
-        ),
-      }));
     },
 
     getItemById: (productId: number) => {
