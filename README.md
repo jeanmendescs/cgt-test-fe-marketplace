@@ -7,6 +7,7 @@
 - [Marketplace](#marketplace)
 - [Content Table](#content-table)
 - [Content](#content)
+- [Development Practices](#development-practices)
 - [Screenshots](#screenshots)
 - [Technologies](#technologies)
 - [Setup](#setup)
@@ -17,16 +18,60 @@
 
 This project delivers an MVP marketplace application featuring a product-listing home page, dedicated product detail pages, and a cart page. It was built with React.js and styled with SCSS, using Zustand and the React Context API for state management. The application is covered by unit tests using React Testing Library and end-to-end tests with Cypress.
 
+## Development Practices
+
+The following development practices were adopted throughout the project:
+
+### TypeScript & Type Safety
+
+TypeScript with strict mode, custom type definitions, and strong typing across components and state management.
+
+### Code Organization & Architecture
+
+Feature-based folder structure with path aliases (`@components`, `@pages`, `@store`, etc.), code splitting and component composition patterns.
+
+### Testing Practices
+
+Unit tests with Jest and React Testing Library, plus E2E tests with Cypress covering critical user flows.
+
+### Styling Practices
+
+SCSS with modular architecture, centralized breakpoints and design system variables, component-scoped styles, BEM (CSS naming convention) and CSS reset.
+
+### Breakpoints
+
+- **XXL (Extra Extra Large)**: `1920px`
+- **XL (Extra Large)**: `1536px`
+- **LG (Large)**: `1200px`
+- **MD (Medium)**: `900px`
+- **SM (Small)**: `600px`
+
+### State Management
+
+Zustand for global state (cart) and React Context API for feature-specific state, both with TypeScript type safety.
+
+### Build & Tooling
+
+CRACO for CRA customization, SVGR for SVG imports, webpack aliases, and ESLint configuration.
+
 ## Screenshots
+
+Desktop Resolution:
 
 ![Example screenshot](https://imgur.com/02chqbN.jpg)
 ![Example screenshot](https://imgur.com/7aOLt7Q.jpg)
 ![Example screenshot](https://imgur.com/eZ366SG.jpg)
 
+Mobile Resolution:
+
+![Example screenshot](https://imgur.com/pvkbfck.jpg)
+![Example screenshot](https://imgur.com/Cc2mUQf.jpg)
+
 ## Technologies
 
 - React.js
 - JavaScript
+- TypeScript
 - SCSS
 - Zustand
 - Jest
