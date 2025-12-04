@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/cgt-test-fe-marketplace/static/css/main.cff04285.css",
+    "main.js": "/cgt-test-fe-marketplace/static/js/main.694da2aa.js",
+    "static/js/529.56e3179d.chunk.js": "/cgt-test-fe-marketplace/static/js/529.56e3179d.chunk.js",
+    "static/media/product-1.jpg": "/cgt-test-fe-marketplace/static/media/product-1.84aef003009b8da6ccc9.jpg",
+    "static/media/product-7.png": "/cgt-test-fe-marketplace/static/media/product-7.cf79fdf392802d8c7d68.png",
+    "static/media/product-6.jpg": "/cgt-test-fe-marketplace/static/media/product-6.549077fbd58ff0101207.jpg",
+    "static/media/product-8.jpg": "/cgt-test-fe-marketplace/static/media/product-8.71d64405069a9c06eb7c.jpg",
+    "static/media/product-3.jpg": "/cgt-test-fe-marketplace/static/media/product-3.ef10d3b2b0e4d9cd31bf.jpg",
+    "static/media/product-4.jpg": "/cgt-test-fe-marketplace/static/media/product-4.97953e85a9c8b2fc35a3.jpg",
+    "static/media/product-5.jpg": "/cgt-test-fe-marketplace/static/media/product-5.2834efea8d27dddf0093.jpg",
+    "static/media/product-2.jpg": "/cgt-test-fe-marketplace/static/media/product-2.82556f21d9aad43ee53c.jpg",
+    "static/media/product-9.jpg": "/cgt-test-fe-marketplace/static/media/product-9.cd94e9019cfee8dc4d97.jpg",
+    "index.html": "/cgt-test-fe-marketplace/index.html",
+    "main.cff04285.css.map": "/cgt-test-fe-marketplace/static/css/main.cff04285.css.map",
+    "main.694da2aa.js.map": "/cgt-test-fe-marketplace/static/js/main.694da2aa.js.map",
+    "529.56e3179d.chunk.js.map": "/cgt-test-fe-marketplace/static/js/529.56e3179d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cff04285.css",
+    "static/js/main.694da2aa.js"
+  ]
+}
