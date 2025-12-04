@@ -9,6 +9,7 @@
   border-radius: 10px;
   padding: 1.25rem 2rem;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   transition: all 0.3s ease;
 
   &:active {

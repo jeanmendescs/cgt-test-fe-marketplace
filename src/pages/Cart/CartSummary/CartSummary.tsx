@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { TProduct } from "@store/cartStore";
 import "./CartSummary.scss";
+import { Button } from "@components/Button";
 
 type TCartProduct = Pick<TProduct, "id" | "name" | "price">;
 
@@ -31,17 +32,13 @@ function CartSummary({ products, total, onClearCart }: TCartSummaryProps) {
         <span>${total.toFixed(2)}</span>
       </div>
 
-      <button className="cart-summary__checkout-btn">
-        Proceed to Checkout
-      </button>
-
       <div className="cart-summary__actions">
         <Link to="/" className="cart-summary__continue">
           ← Continue Shopping
         </Link>
-        <button className="cart-summary__clear" onClick={onClearCart}>
+        <Button.Outlined className="cart-summary__clear" onClick={onClearCart}>
           Clear Cart
-        </button>
+        </Button.Outlined>
       </div>
     </aside>
   );
