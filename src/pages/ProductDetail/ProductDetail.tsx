@@ -11,11 +11,10 @@ function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { getProductById } = useProducts();
-  const cartItems = useCartStore((state) => state.items);
+  const { isInCart } = useCartStore();
 
   const product = getProductById(Number(id));
-  const cartItem = cartItems.find((item) => item.productId === Number(id));
-  const quantityInCart = cartItem ? 1 : 0;
+  const quantityInCart = isInCart(Number(id)) ? 1 : 0;
 
   if (!product) {
     return (

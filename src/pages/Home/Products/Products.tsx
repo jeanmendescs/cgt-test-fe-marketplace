@@ -5,12 +5,12 @@ import Product from "./Product/Product";
 
 function Products() {
   const { products } = useProducts();
-  const { getItemById } = useCartStore();
+  const { isInCart } = useCartStore();
 
   return (
     <div className="products">
       {products.map((product) => {
-        const cartItem = getItemById(product.id);
+        const cartItem = isInCart(product.id);
         const quantityInCart = cartItem ? 1 : 0;
 
         return (

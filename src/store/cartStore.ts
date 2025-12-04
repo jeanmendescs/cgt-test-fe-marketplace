@@ -10,15 +10,11 @@ export type TProduct = {
   alt: string;
 };
 
-export type TCartItem = {
-  productId: number;
-};
-
 type TCartState = {
-  items: TCartItem[];
+  items: number[];
   addToCart: (productId: number) => void;
   removeFromCart: (productId: number) => void;
-  getItemById: (productId: number) => TCartItem | undefined;
+  isInCart: (productId: number) => boolean;
   getTotalQuantity: () => number;
   clearCart: () => void;
 };
@@ -29,18 +25,18 @@ const useCartStore = create<TCartState>((set, get) => {
 
     addToCart: (productId: number) => {
       set((state) => ({
-        items: [...state.items, { productId }],
+        items: [...state.items, productId],
       }));
     },
 
     removeFromCart: (productId: number) => {
       set((state) => ({
-        items: state.items.filter((item) => item.productId !== productId),
+        items: state.items.filter((item) => item !== productId),
       }));
     },
 
-    getItemById: (productId: number) => {
-      return get().items.find((item) => item.productId === productId);
+    isInCart: (productId: number) => {
+      return get().items.includes(productId);
     },
 
     getTotalQuantity: () => {

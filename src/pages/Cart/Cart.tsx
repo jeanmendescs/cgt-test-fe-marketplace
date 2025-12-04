@@ -10,9 +10,7 @@ function CartPage() {
   const clearCart = useCartStore((state) => state.clearCart);
   const { getProductById } = useProducts();
 
-  const cartProducts = items.map((item) =>
-    getProductById(item.productId)
-  ) as TProduct[];
+  const cartProducts = items.map((item) => getProductById(item)) as TProduct[];
   const total = cartProducts.reduce((sum, item) => sum + item.price, 0);
 
   if (items.length === 0) {
