@@ -1,0 +1,15 @@
+@use "@styles/base/breakpoints" as *;
+@use "@styles/base/colors" as *;
+
+.base-button.outlined-button {
+  color: $gray-color;
+  background: transparent;
+  border: 2px solid #2d2d5a;
+
+  &:hover {
+    border-color: $red-color;
+    color: $red-color;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba($red-color, 0.2);
+  }
+}

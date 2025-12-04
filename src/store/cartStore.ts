@@ -12,7 +12,6 @@ export type TProduct = {
 
 export type TCartItem = {
   productId: number;
-  quantity: number;
 };
 
 type TCartState = {
@@ -29,47 +28,15 @@ const useCartStore = create<TCartState>((set, get) => {
     items: [],
 
     addToCart: (productId: number) => {
-      set((state) => {
-        const existingItem = state.items.find(
-          (item) => item.productId === productId
-        );
-
-        if (existingItem) {
-          return {
-            items: state.items.map((item) =>
-              item.productId === productId
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          };
-        }
-
-        return {
-          items: [...state.items, { productId, quantity: 1 }],
-        };
-      });
+      set((state) => ({
+        items: [...state.items, { productId }],
+      }));
     },
 
     removeFromCart: (productId: number) => {
-      set((state) => {
-        const existingItem = state.items.find(
-          (item) => item.productId === productId
-        );
-
-        if (existingItem && existingItem.quantity > 1) {
-          return {
-            items: state.items.map((item) =>
-              item.productId === productId
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          };
-        }
-
-        return {
-          items: state.items.filter((item) => item.productId !== productId),
-        };
-      });
+      set((state) => ({
+        items: state.items.filter((item) => item.productId !== productId),
+      }));
     },
 
     getItemById: (productId: number) => {
@@ -77,7 +44,7 @@ const useCartStore = create<TCartState>((set, get) => {
     },
 
     getTotalQuantity: () => {
-      return get().items.reduce((total, item) => total + item.quantity, 0);
+      return get().items.length;
     },
 
     clearCart: () => {

@@ -11,7 +11,7 @@ function Products() {
     <div className="products">
       {products.map((product) => {
         const cartItem = getItemById(product.id);
-        const quantityInCart = cartItem?.quantity || 0;
+        const quantityInCart = cartItem ? 1 : 0;
 
         return (
           <Product

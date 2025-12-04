@@ -1,8 +1,15 @@
 @use "@styles/base/breakpoints" as *;
 @use "@styles/base/colors" as *;
 
-.product {
+.product-link {
   flex: 1 1 calc(100% / 3 - 2rem);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product {
+  height: 100%;
   background: linear-gradient(145deg, #1e1e3f 0%, #252550 100%);
   border: 2px solid #2d2d5a;
   border-radius: 12px;
@@ -15,6 +22,14 @@
     border-color: $red-color;
     box-shadow: 0 10px 40px rgba($red-color, 0.2),
       0 0 20px rgba($red-color, 0.1);
+  }
+
+  .product__button {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.75rem 1.25rem;
+    min-width: 144px;
   }
 }
 
@@ -84,31 +99,6 @@
   text-shadow: 0 0 10px rgba($blue-color, 0.4);
 }
 
-.product__button {
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: $gray-color;
-  background: linear-gradient(135deg, $red-color 0%, #c73659 100%);
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.25rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 144px;
-
-  &:hover {
-    background: linear-gradient(135deg, #ff5a7a 0%, $red-color 100%);
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba($red-color, 0.4);
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -121,7 +111,7 @@
 }
 
 @media (max-width: $breakpoint-lg) {
-  .product {
+  .product-link {
     flex: 0 1 calc(100% / 2 - 1.5rem);
   }
 }
@@ -135,16 +125,10 @@
   .product__price {
     text-align: center;
   }
-
-  .product__button {
-    width: 100%;
-    text-align: center;
-  }
 }
 
 @media (max-width: $breakpoint-sm) {
-  .product {
+  .product-link {
     flex: 1 1 100%;
   }
 }
-

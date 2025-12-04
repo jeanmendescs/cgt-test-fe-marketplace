@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import useCartStore, { TProduct } from "@store/cartStore";
 import "./Product.scss";
+import { Button } from "@components/Button";
 
 type TProductProps = TProduct & {
   quantityInCart: number;
@@ -18,7 +20,9 @@ function Product({
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const isInCart = quantityInCart > 0;
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     if (isInCart) {
       removeFromCart(id);
     } else {
@@ -27,32 +31,46 @@ function Product({
   };
 
   return (
-    <article key={id} className="product">
-      <div className="product__image-wrapper">
-        <img
-          src={require(`@assets/images/${image}`)}
-          alt={alt}
-          className="product__image"
-        />
-        {isInCart && <span className="product__badge">{quantityInCart}</span>}
-      </div>
-
-      <div className="product__content">
-        <h2 title={name} className="product__name">
-          {name}
-        </h2>
-        <p title={description} className="product__description">
-          {description.slice(0, 100)}...
-        </p>
-
-        <div className="product__footer">
-          <span className="product__price">${price.toFixed(2)}</span>
-          <button className="product__button" onClick={handleClick}>
-            {isInCart ? "Remove" : "Add to Cart"}
-          </button>
+    <Link to={`/product/${id}`} className="product-link">
+      <article key={id} className="product">
+        <div className="product__image-wrapper">
+          <img
+            src={require(`@assets/images/${image}`)}
+            alt={alt}
+            className="product__image"
+          />
+          {isInCart && <span className="product__badge">{quantityInCart}</span>}
         </div>
-      </div>
-    </article>
+
+        <div className="product__content">
+          <h2 title={name} className="product__name">
+            {name}
+          </h2>
+          <p title={description} className="product__description">
+            {description.slice(0, 100)}...
+          </p>
+
+          <div className="product__footer">
+            <span className="product__price">${price.toFixed(2)}</span>
+            {isInCart ? (
+              <Button.Outlined
+                className="product__button"
+                onClick={handleClick}
+              >
+                Remove
+              </Button.Outlined>
+            ) : (
+              <Button.Contained
+                className="product__button"
+                onClick={handleClick}
+              >
+                Add to Cart
+              </Button.Contained>
+            )}
+          </div>
+        </div>
+      </article>
+    </Link>
   );
 }
 

@@ -1,0 +1,65 @@
+@use "@styles/base/breakpoints" as *;
+@use "@styles/base/colors" as *;
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.product-info__name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: $white-color;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.product-info__description {
+  font-size: 1.125rem;
+  color: #a0a0b8;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .product-info__name {
+    font-size: 2rem;
+  }
+
+  .product-info__description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .product-info {
+    gap: 1.25rem;
+  }
+
+  .product-info__name {
+    font-size: 1.75rem;
+    letter-spacing: 1.5px;
+  }
+
+  .product-info__description {
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .product-info {
+    gap: 1rem;
+  }
+
+  .product-info__name {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  .product-info__description {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
