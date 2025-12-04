@@ -19,8 +19,15 @@ function CartSummary({ products, total, onClearCart }: TCartSummaryProps) {
       <div className="cart-summary__rows">
         {products.map((item) => (
           <div key={item.id} className="cart-summary__row">
-            <span className="cart-summary__name">{item.name}</span>
-            <span>${item.price.toFixed(2)}</span>
+            <span
+              data-testid="cart-summary-name"
+              className="cart-summary__name"
+            >
+              {item.name}
+            </span>
+            <span data-testid="cart-summary-price">
+              ${item.price.toFixed(2)}
+            </span>
           </div>
         ))}
       </div>
