@@ -1,60 +1,87 @@
-# Marketplace MVP
+## Marketplace
 
-The goal of this task is to test your ability to test, refactor and implement new functionality on a given system. Note
-that this repository does not represent the actual code of CGTrader, but only acts as a testing ground.
+> This application implements an MVP version of a marketplace. It includes a home page that lists the marketplace products, a product-specific page, and a cart page.
 
-## New Functionality
+## Content Table
 
-Imagine the situation where management assigns you a task. Management wants you to implement basic MVP functionality for
-the marketplace. User should be able to navigate between home page, product page and cart page, add multiple items to the cart and
-see the total amount for payment.
+- [Marketplace](#marketplace)
+- [Content Table](#content-table)
+- [Content](#content)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Setup](#setup)
+- [Status](#status)
+- [Contact](#contact)
 
-## Tasks
+## Content
 
-1. Implement MVP cart functionality
-2. Refactor implementation code and tests where you see fit. You have as much freedom here as you wish
-3. Take UI and UX in consideration. Improve the layout and styles using css/scss
-4. Make sure test suite runs through all of the tests successfully
+This project delivers an MVP marketplace application featuring a product-listing home page, dedicated product detail pages, and a cart page. It was built with React.js and styled with SCSS, using Zustand and the React Context API for state management. The application is covered by unit tests using React Testing Library and end-to-end tests with Cypress.
 
-## Notes & Requirements
+## Screenshots
 
-* You can spend as much time as you want.
-* You may refactor not only the application code, but the tests too. Keep in mind that test code is still code that
-needs to be maintained.
-* Use git to track your changes. **Fork or clone this repository** and commit often.
-* When finished, send us the link or the zip of the project via e-mail.
+![Example screenshot](https://imgur.com/02chqbN.jpg)
+![Example screenshot](https://imgur.com/7aOLt7Q.jpg)
+![Example screenshot](https://imgur.com/eZ366SG.jpg)
 
-Good luck!
+## Technologies
 
----
+- React.js
+- JavaScript
+- SCSS
+- Zustand
+- Jest
+- React Testing Library
+- Cypress
 
-## Getting Started with Create React App
+## Setup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To run the application:
 
-## Available Scripts
+```bash
+# Clone the respository
+git clone https://github.com/jeanmendescs/cgt-test-fe-marketplace.git
 
-In the project directory, you can run:
+# Open the project's folder on your terminal
+$ cd cgt-test-fe-marketplace-main
 
-### `npm start`
+# Install project's dependencies separatelly for client and server
+$ npm install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# To start the server without a seeded database
+$ npm start
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To run test suites:
 
-### `npm test`
+```bash
+# Run Unit test (Jest and React Testing Library)
+npm test
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Run E2E tests - headless mode (Cypress)
+$ npm run cypress:run
 
-### `npm run build`
+# Run E2E tests - open Cypress GUI
+$ npm run cypress:open
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Status
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Finished.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contact
+
+<div style="display:flex">
+<a href="https://github.com/jeanmendescs">
+ <img height="auto" src="https://avatars3.githubusercontent.com/u/57002849?s=400&u=fff71a8a729144edec9bfd51b2d6dd89af52e00a&v=4" width="100px;" alt="Jean's Profile Picture"/>
+ <br />
+ <sub style="display:block; text-align:center;"><span >Jean Carlos</span></sub></a> <a href="https://github.com/jeanmendescs" title="Jean's Profile Picture"></a>
+</div>
+
+Feel free to get in touch.
+
+<div style="display: inline-block;">
+<a href="https://www.linkedin.com/in/jean-mendes//"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" ></a>
+
+<a href="mailto:mendes.jean.cs@gmail.com"><img src="https://img.shields.io/badge/gmail-D14836?&style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" ></a>
+
+</div>
