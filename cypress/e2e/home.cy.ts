@@ -24,8 +24,10 @@ describe("Home Page", () => {
 
   describe("Products Display", () => {
     it("should display all products from the catalog", () => {
-      // There are 9 products in the catalog
-      cy.get(".product").should("have.length", 9);
+      // Read products from JSON file and verify length matches
+      cy.readFile("src/data/PRODUCTS.json").then((products) => {
+        cy.get(".product").should("have.length", products.length);
+      });
     });
 
     it("should display product information correctly", () => {

@@ -24,14 +24,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//     }
-//   }
-// }
 
-export {}
+// Custom command to visit Cart Page
+Cypress.Commands.add("visitCart", () => {
+  cy.get(".cart").click();
+});
 
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      visitCart(): Chainable<void>;
+    }
+  }
+}
+
+export {};
