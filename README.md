@@ -6,6 +6,7 @@
 
 - [Marketplace](#marketplace)
 - [Content Table](#content-table)
+- [Build](#build)
 - [Content](#content)
 - [Development Practices](#development-practices)
 - [Screenshots](#screenshots)
@@ -17,6 +18,10 @@
 ## Content
 
 This project delivers an MVP marketplace application featuring a product-listing home page, dedicated product detail pages, and a cart page. It was built with React.js and styled with SCSS, using Zustand and the React Context API for state management. The application is covered by unit tests using React Testing Library and end-to-end tests with Cypress.
+
+## Build
+
+The application is deployed and available at: [https://cgt-test.netlify.app/](https://cgt-test.netlify.app/)
 
 ## Development Practices
 
