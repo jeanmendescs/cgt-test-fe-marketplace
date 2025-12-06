@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useCartStore, { TProduct } from "@store/cartStore";
 import "./Product.scss";
 import { Button } from "@components/Button";
+import { memo } from "react";
 
 type TProductProps = TProduct & {
   quantityInCart: number;
@@ -76,4 +77,4 @@ function Product({
   );
 }
 
-export default Product;
+export default memo(Product);

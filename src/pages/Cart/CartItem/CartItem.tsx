@@ -1,5 +1,6 @@
 import useCartStore, { TProduct } from "@store/cartStore";
 import "./CartItem.scss";
+import { memo } from "react";
 
 function CartItem({ id, name, price, image, alt }: TProduct) {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -39,4 +40,4 @@ function CartItem({ id, name, price, image, alt }: TProduct) {
   );
 }
 
-export default CartItem;
+export default memo(CartItem);
