@@ -7,29 +7,34 @@ import ProductActions from "./ProductActions/ProductActions";
 import { Button } from "@components/Button";
 import "./ProductDetail.scss";
 
+const NotFound = ({ navigate }: { navigate: (path: string) => void }) => {
+  return (
+    <div className="product-detail product-detail--not-found">
+      <h1>Product not found</h1>
+      <Button.Outlined
+        className="outlined-button outlined-button--back"
+        onClick={() => navigate("/")}
+      >
+        <span className="outlined-button__icon">←</span>
+        Back
+      </Button.Outlined>
+    </div>
+  );
+};
+
 function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { getProductById } = useProducts();
   const { isInCart } = useCartStore();
 
-  const product = getProductById(Number(id));
-  const quantityInCart = isInCart(Number(id)) ? 1 : 0;
+  const isIdNumber = !isNaN(Number(id));
+  if (!isIdNumber) return <NotFound navigate={navigate} />;
 
-  if (!product) {
-    return (
-      <div className="product-detail product-detail--not-found">
-        <h1>Product not found</h1>
-        <Button.Outlined
-          className="outlined-button outlined-button--back"
-          onClick={() => navigate("/")}
-        >
-          <span className="outlined-button__icon">←</span>
-          Back
-        </Button.Outlined>
-      </div>
-    );
-  }
+  const product = getProductById(Number(id));
+  if (!product) return <NotFound navigate={navigate} />;
+
+  const quantityInCart = isInCart(Number(id)) ? 1 : 0;
 
   return (
     <div className="product-detail">
