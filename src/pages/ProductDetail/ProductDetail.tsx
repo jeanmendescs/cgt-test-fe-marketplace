@@ -15,7 +15,9 @@ const NotFound = ({ navigate }: { navigate: (path: string) => void }) => {
         className="outlined-button outlined-button--back"
         onClick={() => navigate("/")}
       >
-        <span className="outlined-button__icon">←</span>
+        <span className="outlined-button__icon" aria-hidden="true">
+          ←
+        </span>
         Back
       </Button.Outlined>
     </div>
@@ -42,7 +44,9 @@ function ProductDetail() {
         className="outlined-button outlined-button--back"
         onClick={() => navigate("/")}
       >
-        <span className="outlined-button__icon">←</span>
+        <span className="outlined-button__icon" aria-hidden="true">
+          ←
+        </span>
         Back
       </Button.Outlined>
 

@@ -8,10 +8,15 @@ function Cart() {
   const totalQuantity = getTotalQuantity();
 
   return (
-    <Link to="/cart" className="cart">
-      <CartIcon className="cart__icon" />
+    <Link to="/cart" className="cart" aria-label="View cart">
+      <CartIcon className="cart__icon" aria-hidden="true" />
       {totalQuantity > 0 && (
-        <span className="cart__quantity">{totalQuantity}</span>
+        <span
+          className="cart__quantity"
+          aria-label={`${totalQuantity} items in cart`}
+        >
+          {totalQuantity}
+        </span>
       )}
     </Link>
   );
