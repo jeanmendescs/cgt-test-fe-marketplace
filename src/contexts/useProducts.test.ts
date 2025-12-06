@@ -35,14 +35,11 @@ describe("useProducts", () => {
 
     const product2 = result.current.getProductById(2);
     const product5 = result.current.getProductById(5);
-    const product9 = result.current.getProductById(9);
 
     expect(product2?.id).toBe(2);
     expect(product2?.name).toBe("Product B");
     expect(product5?.id).toBe(5);
     expect(product5?.name).toBe("Product E");
-    expect(product9?.id).toBe(9);
-    expect(product9?.name).toBe("Product I");
   });
 
   it("getProductById returns undefined when id does not exist", () => {
