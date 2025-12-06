@@ -140,6 +140,10 @@ describe("Cart Page", () => {
           cy.get(".cart-item__remove").click();
         });
 
+      // Verify toast notification appears
+      cy.get(".Toastify__toast--info").should("exist");
+      cy.get(".Toastify__toast--info").should("contain", "Removed from cart");
+
       // Verify only 1 item remains
       cy.get(".cart-item").should("have.length", 1);
       cy.get(".cart-item")
@@ -159,6 +163,10 @@ describe("Cart Page", () => {
 
       // Click Clear Cart button
       cy.get(".cart-summary__clear").click();
+
+      // Verify toast notification appears
+      cy.get(".Toastify__toast--info").should("exist");
+      cy.get(".Toastify__toast--info").should("contain", "Cart cleared");
 
       // Verify empty cart state is displayed
       cy.get(".cart-empty").should("exist");
@@ -218,6 +226,10 @@ describe("Cart Page", () => {
         cy.get("button").contains("ADD TO CART").click();
       });
 
+      // Wait for toast to appear and then dismiss it or wait for it to disappear
+      cy.get(".Toastify__toast--success").should("exist");
+      cy.get(".Toastify__toast--success").click(); // Dismiss toast by clicking
+
       // Navigate to home
       cy.get(".header__link").click();
 
@@ -231,16 +243,21 @@ describe("Cart Page", () => {
       cy.visit("/product/1");
       cy.get("button").contains("ADD TO CART").click();
 
-      cy.get(".header__link").click();
-      cy.get(".cart__quantity").should("contain", "1");
+      // Wait for toast and dismiss it
+      cy.get(".Toastify__toast--success").should("exist");
+      cy.get(".Toastify__toast--success").click(); // Dismiss toast
 
-      // Navigate to home
-      cy.get(".header__link").click();
+      cy.visit("/"); // Use visit instead of clicking header link
+      cy.get(".cart__quantity").should("contain", "1");
 
       // Navigate to product page
       cy.get(".product").eq(1).click();
       // Add second item
       cy.get("button").contains("ADD TO CART").click();
+
+      // Wait for toast and dismiss it
+      cy.get(".Toastify__toast--success").should("exist");
+      cy.get(".Toastify__toast--success").click(); // Dismiss toast
 
       cy.get(".cart__quantity").should("contain", "2");
     });

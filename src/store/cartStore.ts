@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { toast } from "react-toastify";
 
 export type TProduct = {
   id: number;
@@ -38,6 +39,7 @@ const useCartStore = create<TCartState>()(
               items: new Set<number>(items).add(productId),
             };
           });
+          toast.success("Added to cart");
         },
 
         removeFromCart: (productId: number) => {
@@ -52,6 +54,7 @@ const useCartStore = create<TCartState>()(
             newItems.delete(productId);
             return { items: newItems };
           });
+          toast.info("Removed from cart");
         },
 
         isInCart: (productId: number) => {
@@ -76,6 +79,7 @@ const useCartStore = create<TCartState>()(
 
         clearCart: () => {
           set({ items: new Set<number>() });
+          toast.info("Cart cleared");
         },
       };
     },

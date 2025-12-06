@@ -59,6 +59,10 @@ describe("ProductDetail Page", () => {
         cy.get("button").contains("ADD TO CART").click();
       });
 
+      // Verify toast notification appears
+      cy.get(".Toastify__toast--success").should("exist");
+      cy.get(".Toastify__toast--success").should("contain", "Added to cart");
+
       // Verify button changes to REMOVE FROM CART
       cy.get(".product-actions").within(() => {
         cy.get("button").should("contain", "REMOVE FROM CART");
@@ -80,10 +84,17 @@ describe("ProductDetail Page", () => {
       // Verify it's in cart
       cy.get(".product-image__badge").should("exist");
 
+      // Wait for first toast to disappear or dismiss it
+      cy.wait(100);
+
       // Click REMOVE FROM CART
       cy.get(".product-actions").within(() => {
         cy.get("button").contains("REMOVE FROM CART").click();
       });
+
+      // Verify toast notification appears
+      cy.get(".Toastify__toast--info").should("exist");
+      cy.get(".Toastify__toast--info").should("contain", "Removed from cart");
 
       // Verify button changes back to ADD TO CART
       cy.get(".product-actions").within(() => {

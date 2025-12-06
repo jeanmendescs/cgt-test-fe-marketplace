@@ -123,6 +123,10 @@ describe("Home Page", () => {
           cy.get(".product__button").contains("Add to Cart").click();
         });
 
+      // Verify toast notification appears
+      cy.get(".Toastify__toast--success").should("exist");
+      cy.get(".Toastify__toast--success").should("contain", "Added to cart");
+
       // Verify button changes to Remove
       cy.get(".product")
         .first()
@@ -212,6 +216,10 @@ describe("Home Page", () => {
         .within(() => {
           cy.get(".product__button").contains("Remove").click();
         });
+
+      // Verify toast notification appears
+      cy.get(".Toastify__toast--info").should("exist");
+      cy.get(".Toastify__toast--info").should("contain", "Removed from cart");
 
       // Verify button changes back to Add to Cart
       cy.get(".product")
