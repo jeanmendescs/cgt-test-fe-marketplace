@@ -3,6 +3,8 @@ import useCartStore from "./cartStore";
 
 describe("cartStore", () => {
   beforeEach(() => {
+    // Clear localStorage to prevent persistence from affecting tests
+    localStorage.clear();
     // Reset the store before each test
     useCartStore.getState().clearCart();
   });

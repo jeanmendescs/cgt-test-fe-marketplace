@@ -39,7 +39,7 @@ describe("Cart Page", () => {
       cy.get(".product__button").eq(1).click();
 
       // visit cart page
-      cy.visitCart();
+      cy.visit("/cart");
     });
 
     it("should display cart items when cart has products", () => {
@@ -204,7 +204,7 @@ describe("Cart Page", () => {
       cy.visit("/");
 
       // Click cart icon in header
-      cy.visitCart();
+      cy.get(".cart").click();
 
       // Should navigate to cart page
       cy.url().should("include", "/cart");

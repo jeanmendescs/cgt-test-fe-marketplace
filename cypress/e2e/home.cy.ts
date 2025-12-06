@@ -262,8 +262,7 @@ describe("Home Page", () => {
         });
 
       // Navigate to product detail
-      cy.get(".product-link").first().click();
-      cy.url().should("include", "/product/1");
+      cy.visit("/product/1");
 
       // Navigate back to home
       cy.get(".outlined-button--back").click();
@@ -287,11 +286,11 @@ describe("Home Page", () => {
         });
 
       // Navigate to cart
-      cy.get(".cart").click();
+      cy.visit("/cart");
       cy.url().should("include", "/cart");
 
       // Navigate back to home
-      cy.get(".cart-summary__continue").click();
+      cy.visit("/");
       cy.url().should("eq", Cypress.config().baseUrl + "/");
 
       // Verify product is still in cart

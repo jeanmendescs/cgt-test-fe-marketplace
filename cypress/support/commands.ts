@@ -25,17 +25,4 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-// Custom command to visit Cart Page
-Cypress.Commands.add("visitCart", () => {
-  cy.get(".cart").click();
-});
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      visitCart(): Chainable<void>;
-    }
-  }
-}
-
 export {};

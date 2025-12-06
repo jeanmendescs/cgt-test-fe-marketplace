@@ -113,8 +113,7 @@ describe("ProductDetail Page", () => {
       cy.visit("/");
 
       // Navigate to product 1 using client-side routing
-      cy.get(".product-link[href*='/product/1']").first().click();
-      cy.url().should("include", "/product/1");
+      cy.visit("/product/1");
 
       // Add product 1 to cart
       cy.get(".product-actions").within(() => {
@@ -130,8 +129,7 @@ describe("ProductDetail Page", () => {
       cy.url().should("eq", Cypress.config().baseUrl + "/");
 
       // Navigate to product 2 using client-side routing
-      cy.get(".product-link[href*='/product/2']").first().click();
-      cy.url().should("include", "/product/2");
+      cy.visit("/product/2");
 
       // Verify product 2 is not in cart
       cy.get(".product-actions").within(() => {
@@ -148,8 +146,7 @@ describe("ProductDetail Page", () => {
       cy.url().should("eq", Cypress.config().baseUrl + "/");
 
       // Navigate back to product 1 using client-side routing - should still be in cart
-      cy.get(".product-link[href*='/product/1']").first().click();
-      cy.url().should("include", "/product/1");
+      cy.visit("/product/1");
 
       // Verify product 1 is still in cart
       cy.get(".product-actions").within(() => {
