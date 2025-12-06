@@ -10,11 +10,9 @@ function CartPage() {
   const clearCart = useCartStore((state) => state.clearCart);
   const { getProductById } = useProducts();
 
-  let cartProducts = [] as TProduct[];
-
-  items.forEach((item) => {
-    cartProducts.push(getProductById(item) as TProduct);
-  });
+  const cartProducts = Array.from(items)
+    .map((item) => getProductById(item))
+    .filter((product): product is TProduct => product !== undefined);
   const total = cartProducts.reduce((sum, item) => sum + item.price, 0);
 
   if (items.size === 0) {
