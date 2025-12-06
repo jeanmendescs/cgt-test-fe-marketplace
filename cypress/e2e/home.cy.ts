@@ -77,16 +77,6 @@ describe("Home Page", () => {
         });
       });
     });
-
-    it("should display truncated product descriptions", () => {
-      cy.get(".product")
-        .first()
-        .within(() => {
-          cy.get(".product__description").should("exist");
-          // Description should be truncated (ends with "...")
-          cy.get(".product__description").should("contain", "...");
-        });
-    });
   });
 
   describe("Product Links", () => {

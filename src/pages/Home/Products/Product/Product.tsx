@@ -43,12 +43,14 @@ function Product({
         </div>
 
         <div className="product__content">
-          <h2 title={name} className="product__name">
-            {name}
-          </h2>
-          <p title={description} className="product__description">
-            {description.slice(0, 100)}...
-          </p>
+          <div className="product__header">
+            <h2 title={name} className="product__name">
+              {name}
+            </h2>
+            <p title={description} className="product__description">
+              {description}
+            </p>
+          </div>
 
           <div className="product__footer">
             <span className="product__price">${price.toFixed(2)}</span>

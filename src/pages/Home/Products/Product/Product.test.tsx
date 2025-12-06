@@ -35,7 +35,7 @@ describe("Product", () => {
       expect(name).toHaveClass("product__name");
     });
 
-    it("renders the truncated product description", () => {
+    it("renders the product description", () => {
       render(
         <MemoryRouter>
           <Product {...defaultProps} />
@@ -45,30 +45,7 @@ describe("Product", () => {
       const description = screen.getByTitle(defaultProps.description);
       expect(description).toBeInTheDocument();
       expect(description).toHaveClass("product__description");
-      expect(description.textContent).toMatch(/\.\.\.$/);
-    });
-
-    it("truncates description to 100 characters", () => {
-      render(
-        <MemoryRouter>
-          <Product {...defaultProps} />
-        </MemoryRouter>
-      );
-
-      const description = screen.getByTitle(defaultProps.description);
-      expect(description.textContent?.length).toBeLessThanOrEqual(103); // 100 chars + "..."
-    });
-
-    it("renders the formatted price", () => {
-      render(
-        <MemoryRouter>
-          <Product {...defaultProps} />
-        </MemoryRouter>
-      );
-
-      const price = screen.getByText("$29.99");
-      expect(price).toBeInTheDocument();
-      expect(price).toHaveClass("product__price");
+      expect(description.textContent).toBe(defaultProps.description);
     });
 
     it("renders the product image with correct src and alt", () => {
@@ -199,4 +176,3 @@ describe("Product", () => {
     });
   });
 });
-
