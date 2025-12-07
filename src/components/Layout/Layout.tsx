@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import Loading from "@components/Loading/Loading";
 import ErrorBoundary from "@components/ErrorBoundary/ErrorBoundary";
 import "react-toastify/dist/ReactToastify.css";
+import { TOAST_DURATION } from "constants/constants";
 
 function Layout() {
   return (
@@ -17,7 +18,7 @@ function Layout() {
       </ErrorBoundary>
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={TOAST_DURATION}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

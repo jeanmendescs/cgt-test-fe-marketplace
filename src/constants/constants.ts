@@ -5,3 +5,5 @@ export const breakpoints = {
   md: 900,
   sm: 600,
 } as const;
+
+export const TOAST_DURATION = 3000;
