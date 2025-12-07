@@ -16,7 +16,12 @@ function ProductImage({ image, alt, quantityInCart }: TProductImage) {
           className="product-image__img"
         />
         {quantityInCart > 0 && (
-          <span className="product-image__badge">{quantityInCart}</span>
+          <span
+            className="product-image__badge"
+            aria-label={`${quantityInCart} of this item in cart`}
+          >
+            {quantityInCart}
+          </span>
         )}
       </div>
     </div>

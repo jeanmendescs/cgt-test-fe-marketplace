@@ -40,7 +40,14 @@ function Product({
             alt={alt}
             className="product__image"
           />
-          {isInCart && <span className="product__badge">{quantityInCart}</span>}
+          {isInCart && (
+            <span
+              className="product__badge"
+              aria-label={`${quantityInCart} of ${name} in cart`}
+            >
+              {quantityInCart}
+            </span>
+          )}
         </div>
 
         <div className="product__content">
@@ -59,6 +66,7 @@ function Product({
               <Button.Outlined
                 className="product__button"
                 onClick={handleClick}
+                aria-label={`Remove ${name} from cart`}
               >
                 Remove
               </Button.Outlined>
@@ -66,6 +74,7 @@ function Product({
               <Button.Contained
                 className="product__button"
                 onClick={handleClick}
+                aria-label={`Add ${name} to cart`}
               >
                 Add to Cart
               </Button.Contained>

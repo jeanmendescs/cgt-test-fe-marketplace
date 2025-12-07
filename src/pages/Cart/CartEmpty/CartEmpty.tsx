@@ -13,7 +13,11 @@ function CartEmpty() {
         <div className="cart-empty">
           <div className="cart-empty__icon">🛒</div>
           <p className="cart-empty__text">Your cart is empty</p>
-          <Link to="/" className="cart-empty__btn">
+          <Link
+            to="/"
+            className="cart-empty__btn"
+            aria-label="Start shopping and view products"
+          >
             Start Shopping
           </Link>
         </div>

@@ -18,7 +18,10 @@ function NotFoundPage() {
           <p className="not-found-page__message">
             Oops! The page you're looking for doesn't exist.
           </p>
-          <Button.Contained onClick={handleGoHome}>
+          <Button.Contained
+            onClick={handleGoHome}
+            aria-label="Return to home page"
+          >
             Go Back Home
           </Button.Contained>
         </div>

@@ -62,12 +62,17 @@ function CartSummary({ products, total, onClearCart }: TCartSummary) {
         </div>
 
         <div className="cart-summary__actions">
-          <Link to="/" className="cart-summary__continue">
+          <Link
+            to="/"
+            className="cart-summary__continue"
+            aria-label="Continue shopping and return to product list"
+          >
             ← Continue Shopping
           </Link>
           <Button.Outlined
             className="cart-summary__clear"
             onClick={handleClearCartClick}
+            aria-label="Clear all items from cart"
           >
             Clear Cart
           </Button.Outlined>

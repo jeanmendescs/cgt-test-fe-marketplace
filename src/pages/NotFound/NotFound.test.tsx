@@ -62,8 +62,11 @@ describe("NotFoundPage", () => {
         </MemoryRouter>
       );
 
-      const button = screen.getByRole("button", { name: "Go Back Home" });
+      const button = screen.getByRole("button", {
+        name: "Return to home page",
+      });
       expect(button).toBeInTheDocument();
+      expect(button).toHaveTextContent("Go Back Home");
     });
 
     it("renders with correct main container classes", () => {
@@ -104,7 +107,9 @@ describe("NotFoundPage", () => {
         </MemoryRouter>
       );
 
-      const button = screen.getByRole("button", { name: "Go Back Home" });
+      const button = screen.getByRole("button", {
+        name: "Return to home page",
+      });
       await userEvent.click(button);
 
       expect(mockNavigate).toHaveBeenCalledTimes(1);

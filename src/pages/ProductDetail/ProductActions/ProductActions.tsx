@@ -4,11 +4,17 @@ import { Button } from "@components/Button";
 
 type TProductActions = {
   productId: number;
+  productName: string;
   price: number;
   quantityInCart: number;
 };
 
-function ProductActions({ productId, price, quantityInCart }: TProductActions) {
+function ProductActions({
+  productId,
+  productName,
+  price,
+  quantityInCart,
+}: TProductActions) {
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
 
@@ -30,11 +36,17 @@ function ProductActions({ productId, price, quantityInCart }: TProductActions) {
       </div>
 
       {isInCart ? (
-        <Button.Outlined onClick={handleRemoveFromCart}>
+        <Button.Outlined
+          onClick={handleRemoveFromCart}
+          aria-label={`Remove ${productName} from cart`}
+        >
           REMOVE FROM CART
         </Button.Outlined>
       ) : (
-        <Button.Contained onClick={handleAddToCart}>
+        <Button.Contained
+          onClick={handleAddToCart}
+          aria-label={`Add ${productName} to cart`}
+        >
           ADD TO CART
         </Button.Contained>
       )}

@@ -82,8 +82,11 @@ describe("Product", () => {
         </MemoryRouter>
       );
 
-      const addButton = screen.getByRole("button", { name: "Add to Cart" });
+      const addButton = screen.getByRole("button", {
+        name: "Add Test Product Name to cart",
+      });
       expect(addButton).toBeInTheDocument();
+      expect(addButton).toHaveTextContent("Add to Cart");
     });
 
     it("does not render REMOVE button", () => {
@@ -93,7 +96,9 @@ describe("Product", () => {
         </MemoryRouter>
       );
 
-      const removeButton = screen.queryByRole("button", { name: "Remove" });
+      const removeButton = screen.queryByRole("button", {
+        name: "Remove Test Product Name from cart",
+      });
       expect(removeButton).not.toBeInTheDocument();
     });
 
@@ -108,15 +113,17 @@ describe("Product", () => {
       expect(badge).not.toBeInTheDocument();
     });
 
-    it("adds product to cart when ADD TO CART button is clicked", async () => {
+    it("adds product to cart when ADD TO CART button is clicked", () => {
       render(
         <MemoryRouter>
           <Product {...defaultProps} quantityInCart={0} />
         </MemoryRouter>
       );
 
-      const addButton = screen.getByRole("button", { name: "Add to Cart" });
-      await userEvent.click(addButton);
+      const addButton = screen.getByRole("button", {
+        name: "Add Test Product Name to cart",
+      });
+      userEvent.click(addButton);
 
       // Verify item was added to store
       expect(useCartStore.getState().isInCart(defaultProps.id)).toBe(true);
@@ -131,8 +138,11 @@ describe("Product", () => {
         </MemoryRouter>
       );
 
-      const removeButton = screen.getByRole("button", { name: "Remove" });
+      const removeButton = screen.getByRole("button", {
+        name: "Remove Test Product Name from cart",
+      });
       expect(removeButton).toBeInTheDocument();
+      expect(removeButton).toHaveTextContent("Remove");
     });
 
     it("does not render ADD TO CART button", () => {
@@ -142,7 +152,9 @@ describe("Product", () => {
         </MemoryRouter>
       );
 
-      const addButton = screen.queryByRole("button", { name: "Add to Cart" });
+      const addButton = screen.queryByRole("button", {
+        name: "Add Test Product Name to cart",
+      });
       expect(addButton).not.toBeInTheDocument();
     });
 
@@ -158,7 +170,7 @@ describe("Product", () => {
       expect(badge).toHaveClass("product__badge");
     });
 
-    it("removes product from cart when REMOVE button is clicked", async () => {
+    it("removes product from cart when REMOVE button is clicked", () => {
       // First add the item to the cart
       useCartStore.getState().addToCart(defaultProps.id);
 
@@ -168,13 +180,13 @@ describe("Product", () => {
         </MemoryRouter>
       );
 
-      const removeButton = screen.getByRole("button", { name: "Remove" });
-      await userEvent.click(removeButton);
+      const removeButton = screen.getByRole("button", {
+        name: "Remove Test Product Name from cart",
+      });
+      userEvent.click(removeButton);
 
       // Verify item was removed from store
       expect(useCartStore.getState().isInCart(defaultProps.id)).toBe(false);
     });
   });
 });
-
-

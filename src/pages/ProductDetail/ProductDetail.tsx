@@ -26,6 +26,7 @@ function ProductDetail() {
       <Button.Outlined
         className="outlined-button outlined-button--back"
         onClick={() => navigate("/")}
+        aria-label="Go back to product list"
       >
         <span className="outlined-button__icon" aria-hidden="true">
           ←
@@ -44,6 +45,7 @@ function ProductDetail() {
           <ProductInfo name={product.name} description={product.description} />
           <ProductActions
             productId={product.id}
+            productName={product.name}
             price={product.price}
             quantityInCart={quantityInCart}
           />

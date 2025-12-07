@@ -11,6 +11,7 @@ describe("ProductActions", () => {
 
   const defaultProps = {
     productId: 1,
+    productName: "Test Product",
     price: 29.99,
     quantityInCart: 0,
   };
@@ -58,15 +59,18 @@ describe("ProductActions", () => {
     it("renders ADD TO CART button", () => {
       render(<ProductActions {...defaultProps} quantityInCart={0} />);
 
-      const addButton = screen.getByRole("button", { name: "ADD TO CART" });
+      const addButton = screen.getByRole("button", {
+        name: "Add Test Product to cart",
+      });
       expect(addButton).toBeInTheDocument();
+      expect(addButton).toHaveTextContent("ADD TO CART");
     });
 
     it("does not render REMOVE FROM CART button", () => {
       render(<ProductActions {...defaultProps} quantityInCart={0} />);
 
       const removeButton = screen.queryByRole("button", {
-        name: "REMOVE FROM CART",
+        name: "Remove Test Product from cart",
       });
       expect(removeButton).not.toBeInTheDocument();
     });
@@ -74,7 +78,9 @@ describe("ProductActions", () => {
     it("adds product to cart when ADD TO CART button is clicked", async () => {
       render(<ProductActions {...defaultProps} quantityInCart={0} />);
 
-      const addButton = screen.getByRole("button", { name: "ADD TO CART" });
+      const addButton = screen.getByRole("button", {
+        name: "Add Test Product to cart",
+      });
       await userEvent.click(addButton);
 
       // Verify item was added to store
@@ -89,16 +95,17 @@ describe("ProductActions", () => {
       render(<ProductActions {...defaultProps} quantityInCart={1} />);
 
       const removeButton = screen.getByRole("button", {
-        name: "REMOVE FROM CART",
+        name: "Remove Test Product from cart",
       });
       expect(removeButton).toBeInTheDocument();
+      expect(removeButton).toHaveTextContent("REMOVE FROM CART");
     });
 
     it("does not render ADD TO CART button", () => {
       render(<ProductActions {...defaultProps} quantityInCart={1} />);
 
       const addButton = screen.queryByRole("button", {
-        name: "ADD TO CART",
+        name: "Add Test Product to cart",
       });
       expect(addButton).not.toBeInTheDocument();
     });
@@ -107,7 +114,7 @@ describe("ProductActions", () => {
       render(<ProductActions {...defaultProps} quantityInCart={1} />);
 
       const removeButton = screen.getByRole("button", {
-        name: "REMOVE FROM CART",
+        name: "Remove Test Product from cart",
       });
       expect(removeButton).toBeInTheDocument();
     });
@@ -119,7 +126,7 @@ describe("ProductActions", () => {
       render(<ProductActions {...defaultProps} quantityInCart={1} />);
 
       const removeButton = screen.getByRole("button", {
-        name: "REMOVE FROM CART",
+        name: "Remove Test Product from cart",
       });
       await userEvent.click(removeButton);
 

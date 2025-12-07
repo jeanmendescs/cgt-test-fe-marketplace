@@ -82,12 +82,16 @@ class ErrorBoundary extends Component<TErrorBoundary, TErrorBoundaryState> {
               )}
 
               <div className="error-boundary__actions">
-                <Button.Contained onClick={this.handleReset}>
+                <Button.Contained
+                  onClick={this.handleReset}
+                  aria-label="Try to recover from error"
+                >
                   Try Again
                 </Button.Contained>
                 <Button.Outlined
                   className="reload-button"
                   onClick={this.handleReload}
+                  aria-label="Reload the entire page"
                 >
                   Reload Page
                 </Button.Outlined>

@@ -34,12 +34,13 @@ describe("Header", () => {
       </MemoryRouter>
     );
 
-    const logoLink = screen.getByRole("link", { name: "90s Shop" });
+    const logoLink = screen.getByRole("link", { name: "90s Shop home" });
     expect(logoLink).toBeInTheDocument();
     expect(logoLink).toHaveAttribute("href", "/");
+    expect(logoLink).toHaveTextContent("90s Shop");
   });
 
-  it("navigates to home when logo is clicked", async () => {
+  it("navigates to home when logo is clicked", () => {
     let currentLocation = "/cart";
     const router = createMemoryRouter(
       [
@@ -63,13 +64,13 @@ describe("Header", () => {
 
     render(<RouterProvider router={router} />);
 
-    const logoLink = screen.getByRole("link", { name: "90s Shop" });
-    await userEvent.click(logoLink);
+    const logoLink = screen.getByRole("link", { name: "90s Shop home" });
+    userEvent.click(logoLink);
 
     expect(currentLocation).toBe("/");
   });
 
-  it("navigates to home when Home link is clicked", async () => {
+  it("navigates to home when Home link is clicked", () => {
     let currentLocation = "/cart";
     const router = createMemoryRouter(
       [
@@ -93,8 +94,8 @@ describe("Header", () => {
 
     render(<RouterProvider router={router} />);
 
-    const homeLink = screen.getByRole("link", { name: "Home" });
-    await userEvent.click(homeLink);
+    const homeLink = screen.getByRole("link", { name: "Go to home page" });
+    userEvent.click(homeLink);
 
     expect(currentLocation).toBe("/");
   });

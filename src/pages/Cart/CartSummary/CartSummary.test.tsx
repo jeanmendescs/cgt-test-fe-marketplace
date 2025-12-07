@@ -84,9 +84,12 @@ describe("CartSummary", () => {
         </MemoryRouter>
       );
 
-      const clearButton = screen.getByRole("button", { name: "Clear Cart" });
+      const clearButton = screen.getByRole("button", {
+        name: "Clear all items from cart",
+      });
       expect(clearButton).toBeInTheDocument();
       expect(clearButton).toHaveClass("cart-summary__clear");
+      expect(clearButton).toHaveTextContent("Clear Cart");
     });
   });
 
@@ -150,7 +153,9 @@ describe("CartSummary", () => {
       );
 
       // Click Clear Cart button to open confirmation dialog
-      const clearButton = screen.getByRole("button", { name: "Clear Cart" });
+      const clearButton = screen.getByRole("button", {
+        name: "Clear all items from cart",
+      });
       userEvent.click(clearButton);
 
       // Wait for dialog to appear and verify it's shown
@@ -168,9 +173,9 @@ describe("CartSummary", () => {
       ).toBeInTheDocument();
 
       // Find and click the confirm button in the dialog
-      // Query all buttons with "Clear Cart" text
+      // Query all buttons with "Clear Cart" text (the dialog button doesn't have aria-label)
       const allClearCartButtons = screen.getAllByRole("button", {
-        name: "Clear Cart",
+        name: /Clear Cart/i,
       });
       // The confirm button in the dialog should be the one that's a child of the dialog
       // Check which button is inside the dialog element
