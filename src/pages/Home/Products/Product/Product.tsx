@@ -6,6 +6,7 @@ import { memo } from "react";
 
 type TProductProps = TProduct & {
   quantityInCart: number;
+  index?: number;
 };
 
 function Product({
@@ -16,6 +17,7 @@ function Product({
   name,
   price,
   quantityInCart,
+  index = 0,
 }: TProductProps) {
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -39,6 +41,7 @@ function Product({
             src={require(`@assets/images/${image}`)}
             alt={alt}
             className="product__image"
+            loading={index < 3 ? "eager" : "lazy"}
           />
           {isInCart && (
             <span

@@ -13,6 +13,7 @@ function CartItem({ id, name, price, image, alt }: TProduct) {
             src={require(`@assets/images/${image}`)}
             alt={alt}
             className="cart-item__image"
+            loading="lazy"
           />
         </div>
 

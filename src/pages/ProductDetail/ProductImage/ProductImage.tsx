@@ -14,6 +14,7 @@ function ProductImage({ image, alt, quantityInCart }: TProductImage) {
           src={require(`@assets/images/${image}`)}
           alt={alt}
           className="product-image__img"
+          loading="eager"
         />
         {quantityInCart > 0 && (
           <span

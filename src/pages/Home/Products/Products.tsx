@@ -9,7 +9,7 @@ function Products() {
 
   return (
     <div className="products">
-      {products.map((product) => {
+      {products.map((product, index) => {
         const cartItem = isInCart(product.id);
         const quantityInCart = cartItem ? 1 : 0;
 
@@ -17,6 +17,7 @@ function Products() {
           <Product
             key={product.id}
             quantityInCart={quantityInCart}
+            index={index}
             {...product}
           />
         );
