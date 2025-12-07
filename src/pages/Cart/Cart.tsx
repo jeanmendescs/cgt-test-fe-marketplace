@@ -5,11 +5,31 @@ import CartEmpty from "./CartEmpty/CartEmpty";
 import "./Cart.scss";
 import { Helmet } from "react-helmet-async";
 import { CartSummary } from "@components/CartSummary/CartSummary";
+import useDialog from "@components/Dialog/hooks/useDialog";
+import { lazy, Suspense } from "react";
+
+const ConfirmDialog = lazy(
+  () => import("@components/ConfirmDialog/ConfirmDialog")
+);
 
 function CartPage() {
+  const { onOpen, onClose, isDialogOpen, dialogRef } = useDialog();
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
   const { getProductById } = useProducts();
+
+  const handleClearCartClick = () => {
+    onOpen();
+  };
+
+  const handleConfirm = () => {
+    clearCart();
+    onClose();
+  };
+
+  const handleCancel = () => {
+    onClose();
+  };
 
   const cartProducts = Array.from(items)
     .map((item) => getProductById(item))
@@ -44,10 +64,25 @@ function CartPage() {
 
             <CartSummary.Root>
               <CartSummary.Body products={cartProducts} total={total} />
-              <CartSummary.Actions onClearCart={clearCart} />
+              <CartSummary.Actions onClearCart={handleClearCartClick} />
             </CartSummary.Root>
           </div>
         </section>
+
+        {isDialogOpen && (
+          <Suspense>
+            <ConfirmDialog
+              dialogRef={dialogRef}
+              isOpen={isDialogOpen}
+              title="Clear Cart"
+              message="Are you sure you want to clear all items from your cart? This action cannot be undone."
+              confirmText="Clear Cart"
+              cancelText="Cancel"
+              onConfirm={handleConfirm}
+              onCancel={handleCancel}
+            />
+          </Suspense>
+        )}
       </main>
     </>
   );

@@ -32,7 +32,7 @@ export function Body({ products, total }: TCartSummaryBody) {
 
       <div className="cart-summary__total">
         <span>Total</span>
-        <span>{formatPrice(total)}</span>
+        <span data-testid="cart-summary-total">{formatPrice(total)}</span>
       </div>
     </>
   );

@@ -9,6 +9,10 @@ const CartPage = lazy(() => import("@pages/Cart/Cart"));
 const ProductDetailPage = lazy(
   () => import("@pages/ProductDetail/ProductDetail")
 );
+const CheckoutPage = lazy(() => import("@pages/Checkout/Checkout"));
+const CheckoutSuccessPage = lazy(
+  () => import("@pages/Checkout/CheckoutSuccess/CheckoutSuccess")
+);
 const NotFoundPage = lazy(() => import("@pages/NotFound/NotFound"));
 
 const router = createBrowserRouter([
@@ -26,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductDetailPage />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
+      {
+        path: "/checkout/success",
+        element: <CheckoutSuccessPage />,
       },
       {
         path: "*",
