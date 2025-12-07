@@ -21,6 +21,10 @@ type TCartState = {
   clearCart: () => void;
 };
 
+type TPersistedCartState = {
+  items: number[];
+};
+
 const useCartStore = create<TCartState>()(
   persist(
     (set, get) => {
@@ -89,10 +93,9 @@ const useCartStore = create<TCartState>()(
         items: Array.from(state.items),
       }),
       merge: (persistedState, currentState) => {
-        const persisted = persistedState as any;
+        const persisted = persistedState as TPersistedCartState | undefined;
         return {
           ...currentState,
-          ...persisted,
           items:
             persisted?.items && Array.isArray(persisted.items)
               ? new Set(persisted.items)
