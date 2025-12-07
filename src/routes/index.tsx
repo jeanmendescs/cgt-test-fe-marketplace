@@ -3,6 +3,7 @@ import Layout from "@components/Layout/Layout";
 import HomePage from "@pages/Home/Home";
 import CartPage from "@pages/Cart/Cart";
 import ProductDetailPage from "@pages/ProductDetail/ProductDetail";
+import NotFoundPage from "@pages/NotFound/NotFound";
 import "../styles/main.scss";
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductDetailPage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

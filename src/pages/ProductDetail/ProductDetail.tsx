@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import useProducts from "@contexts/useProducts";
 import useCartStore from "@store/cartStore";
 import ProductImage from "./ProductImage/ProductImage";
@@ -7,23 +7,6 @@ import ProductActions from "./ProductActions/ProductActions";
 import { Button } from "@components/Button";
 import "./ProductDetail.scss";
 
-const NotFound = ({ navigate }: { navigate: (path: string) => void }) => {
-  return (
-    <div className="product-detail product-detail--not-found">
-      <h1>Product not found</h1>
-      <Button.Outlined
-        className="outlined-button outlined-button--back"
-        onClick={() => navigate("/")}
-      >
-        <span className="outlined-button__icon" aria-hidden="true">
-          ←
-        </span>
-        Back
-      </Button.Outlined>
-    </div>
-  );
-};
-
 function ProductDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -31,10 +14,10 @@ function ProductDetail() {
   const { isInCart } = useCartStore();
 
   const isIdNumber = !isNaN(Number(id));
-  if (!isIdNumber) return <NotFound navigate={navigate} />;
+  if (!isIdNumber) return <Navigate to="/404" replace />;
 
   const product = getProductById(Number(id));
-  if (!product) return <NotFound navigate={navigate} />;
+  if (!product) return <Navigate to="/404" replace />;
 
   const quantityInCart = isInCart(Number(id)) ? 1 : 0;
 

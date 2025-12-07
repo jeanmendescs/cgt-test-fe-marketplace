@@ -5,6 +5,10 @@
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+
+  .base-button {
+    width: 100%;
+  }
 }
 
 .dialog-actions__cancel {

@@ -169,34 +169,28 @@ describe("ProductDetail Page", () => {
   });
 
   describe("Invalid Product", () => {
-    it("should display 'Product not found' message for invalid product ID", () => {
-      cy.visit("/product/999");
+    it("should redirect to 404 page for invalid product ID", () => {
+      cy.visit("/product/999", { failOnStatusCode: false });
 
-      // Check that not found message is displayed
-      cy.get(".product-detail--not-found").should("exist");
-      cy.get("h1").should("contain", "Product not found");
-
-      // Check that back button is still available
-      cy.get(".outlined-button--back").should("exist");
-      cy.get(".outlined-button--back").should("contain", "Back");
-    });
-
-    it("should navigate to home when back button is clicked from not found page", () => {
-      cy.visit("/product/999");
-
-      // Click back button
-      cy.get(".outlined-button--back").click();
-
-      // Should navigate to home page
-      cy.url().should("eq", Cypress.config().baseUrl + "/");
+      // Should redirect to 404 page
+      cy.url().should("include", "/404");
+      cy.get(".not-found-page").should("exist");
+      cy.get(".not-found-page__title").should("contain", "404");
+      cy.get(".not-found-page__subtitle").should("contain", "Page Not Found");
     });
 
     it("should handle non-numeric product ID gracefully", () => {
-      cy.visit("/product/abc");
+      cy.visit("/product/abc", { failOnStatusCode: false });
 
-      // Should show not found
-      cy.get(".product-detail--not-found").should("exist");
-      cy.get("h1").should("contain", "Product not found");
+      // Should redirect to 404 page
+      cy.url().should("include", "/404");
+      cy.get(".not-found-page").should("exist");
+      cy.get(".not-found-page__title").should("contain", "404");
+      cy.get(".not-found-page__subtitle").should("contain", "Page Not Found");
+      cy.get(".not-found-page__message").should(
+        "contain",
+        "Oops! The page you're looking for doesn't exist."
+      );
     });
   });
 
