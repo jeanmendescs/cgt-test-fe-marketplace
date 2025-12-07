@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import CartSummary from "./CartSummary";
@@ -149,9 +149,38 @@ describe("CartSummary", () => {
         </MemoryRouter>
       );
 
+      // Click Clear Cart button to open confirmation dialog
       const clearButton = screen.getByRole("button", { name: "Clear Cart" });
-      await userEvent.click(clearButton);
+      userEvent.click(clearButton);
 
+      // Wait for dialog to appear and verify it's shown
+      const dialog = await screen.findByRole("dialog");
+      expect(dialog).toBeInTheDocument();
+
+      // Verify dialog content - use getByRole for heading to avoid conflict with button
+      expect(
+        within(dialog).getByRole("heading", { name: "Clear Cart" })
+      ).toBeInTheDocument();
+      expect(
+        within(dialog).getByText(
+          "Are you sure you want to clear all items from your cart? This action cannot be undone."
+        )
+      ).toBeInTheDocument();
+
+      // Find and click the confirm button in the dialog
+      // Query all buttons with "Clear Cart" text
+      const allClearCartButtons = screen.getAllByRole("button", {
+        name: "Clear Cart",
+      });
+      // The confirm button in the dialog should be the one that's a child of the dialog
+      // Check which button is inside the dialog element
+      const confirmButton = allClearCartButtons.find((button) =>
+        dialog.contains(button)
+      );
+      expect(confirmButton).toBeDefined();
+      userEvent.click(confirmButton as HTMLButtonElement);
+
+      // Verify onClearCart was called
       expect(mockOnClearCart).toHaveBeenCalledTimes(1);
     });
   });

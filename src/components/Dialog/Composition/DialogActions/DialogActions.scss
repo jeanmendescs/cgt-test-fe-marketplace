@@ -1,0 +1,46 @@
+@use "@styles/base/colors" as *;
+@use "@styles/base/breakpoints" as *;
+
+.dialog-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.dialog-actions__cancel {
+  min-width: 100px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: rgba($white-color, 0.7);
+  border: 1px solid rgba($white-color, 0.3);
+  background: transparent;
+  padding: 0.75rem 1.5rem;
+
+  &:hover {
+    background: rgba($white-color, 0.1);
+    border-color: rgba($white-color, 0.5);
+  }
+}
+
+.dialog-actions__confirm {
+  min-width: 100px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  background: $red-color;
+  color: $white-color;
+  padding: 0.75rem 1.5rem;
+
+  &:hover {
+    background: lighten($red-color, 5%);
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .dialog-actions {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+  }
+
+  .dialog-actions__cancel,
+  .dialog-actions__confirm {
+    width: 100%;
+  }
+}

@@ -157,12 +157,58 @@ describe("Cart Page", () => {
       cy.get(".cart-summary__total").should("contain", "$40.00");
     });
 
-    it("should clear all items when 'Clear Cart' button is clicked", () => {
+    it("should show confirmation dialog when 'Clear Cart' button is clicked", () => {
       // Verify we have items
       cy.get(".cart-item").should("have.length", 2);
 
       // Click Clear Cart button
       cy.get(".cart-summary__clear").click();
+
+      // Verify confirmation dialog appears
+      cy.get(".dialog-overlay").should("exist");
+      cy.get(".dialog-content").should("exist");
+      cy.get(".dialog-body").should("contain", "Clear Cart");
+      cy.get(".dialog-body").should(
+        "contain",
+        "Are you sure you want to clear all items from your cart? This action cannot be undone."
+      );
+      cy.get(".dialog-actions__cancel").should("contain", "Cancel");
+      cy.get(".dialog-actions__confirm").should("contain", "Clear Cart");
+    });
+
+    it("should not clear cart when cancel button is clicked in confirmation dialog", () => {
+      // Verify we have items
+      cy.get(".cart-item").should("have.length", 2);
+
+      // Click Clear Cart button
+      cy.get(".cart-summary__clear").click();
+
+      // Verify confirmation dialog appears
+      cy.get(".dialog-overlay").should("exist");
+
+      // Click Cancel button
+      cy.get(".dialog-actions__cancel").click();
+
+      // Verify dialog is closed
+      cy.get(".dialog-overlay").should("not.exist");
+
+      // Verify cart items are still present
+      cy.get(".cart-item").should("have.length", 2);
+      cy.get(".cart-summary__total").should("contain", "$70.00");
+    });
+
+    it("should clear all items when confirmation dialog is confirmed", () => {
+      // Verify we have items
+      cy.get(".cart-item").should("have.length", 2);
+
+      // Click Clear Cart button
+      cy.get(".cart-summary__clear").click();
+
+      // Verify confirmation dialog appears
+      cy.get(".dialog-overlay").should("exist");
+
+      // Click Confirm button
+      cy.get(".dialog-actions__confirm").click();
 
       // Verify toast notification appears
       cy.get(".Toastify__toast--info").should("exist");
@@ -172,6 +218,46 @@ describe("Cart Page", () => {
       cy.get(".cart-empty").should("exist");
       cy.get(".cart-empty__text").should("contain", "Your cart is empty");
       cy.get(".cart-item").should("not.exist");
+    });
+
+    it("should close confirmation dialog when clicking outside (on overlay)", () => {
+      // Verify we have items
+      cy.get(".cart-item").should("have.length", 2);
+
+      // Click Clear Cart button
+      cy.get(".cart-summary__clear").click();
+
+      // Verify confirmation dialog appears
+      cy.get(".dialog-overlay").should("exist");
+
+      // Click on overlay (outside dialog)
+      cy.get(".dialog-overlay").click({ force: true });
+
+      // Verify dialog is closed
+      cy.get(".dialog-overlay").should("not.exist");
+
+      // Verify cart items are still present
+      cy.get(".cart-item").should("have.length", 2);
+    });
+
+    it("should close confirmation dialog when pressing Escape key", () => {
+      // Verify we have items
+      cy.get(".cart-item").should("have.length", 2);
+
+      // Click Clear Cart button
+      cy.get(".cart-summary__clear").click();
+
+      // Verify confirmation dialog appears
+      cy.get(".dialog-overlay").should("exist");
+
+      // Press Escape key
+      cy.get("body").type("{esc}");
+
+      // Verify dialog is closed
+      cy.get(".dialog-overlay").should("not.exist");
+
+      // Verify cart items are still present
+      cy.get(".cart-item").should("have.length", 2);
     });
 
     it("should navigate to home when 'Continue Shopping' link is clicked", () => {

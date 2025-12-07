@@ -1,0 +1,34 @@
+@use "@styles/base/colors" as *;
+@use "@styles/base/breakpoints" as *;
+
+.dialog-content {
+  background: linear-gradient(
+    135deg,
+    rgba($white-color, 0.1) 0%,
+    rgba($white-color, 0.05) 100%
+  );
+  border: 1px solid rgba($white-color, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba($black-color, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .dialog-content {
+    padding: 1.5rem;
+  }
+}
