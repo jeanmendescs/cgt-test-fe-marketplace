@@ -3,6 +3,7 @@ import useCartStore, { TProduct } from "@store/cartStore";
 import "./Product.scss";
 import { Button } from "@components/Button";
 import { memo } from "react";
+import useViewport from "hooks/useViewport";
 
 type TProductProps = TProduct & {
   quantityInCart: number;
@@ -19,6 +20,21 @@ function Product({
   quantityInCart,
   index = 0,
 }: TProductProps) {
+  const isAboveLargeScreenSize = useViewport("above", "lg");
+  const isBelowLargeScreenSize = useViewport("below", "lg");
+  const isBelowSmallScreenSize = useViewport("below", "sm");
+
+  const handleImageLoading = () => {
+    // only the visible products in the first row of each breakpoints should be loaded eagerly
+    if (isBelowSmallScreenSize) {
+      return index === 0 ? "eager" : "lazy";
+    }
+
+    if (index <= 2 && isAboveLargeScreenSize) return "eager";
+    if (index <= 1 && isBelowLargeScreenSize) return "eager";
+    return "lazy";
+  };
+
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const isInCart = quantityInCart > 0;
@@ -41,7 +57,7 @@ function Product({
             src={require(`@assets/images/${image}`)}
             alt={alt}
             className="product__image"
-            loading={index < 3 ? "eager" : "lazy"}
+            loading={handleImageLoading()}
           />
           {isInCart && (
             <span
