@@ -25,6 +25,16 @@ type TPersistedCartState = {
   items: number[];
 };
 
+function isPersistedCartState(state: unknown): state is TPersistedCartState {
+  return (
+    typeof state === "object" &&
+    state !== null &&
+    "items" in state &&
+    Array.isArray(state.items) &&
+    state.items.every((item) => typeof item === "number")
+  );
+}
+
 const useCartStore = create<TCartState>()(
   persist(
     (set, get) => {
@@ -93,13 +103,12 @@ const useCartStore = create<TCartState>()(
         items: Array.from(state.items),
       }),
       merge: (persistedState, currentState) => {
-        const persisted = persistedState as TPersistedCartState | undefined;
+        const persisted = isPersistedCartState(persistedState)
+          ? persistedState
+          : undefined;
         return {
           ...currentState,
-          items:
-            persisted?.items && Array.isArray(persisted.items)
-              ? new Set(persisted.items)
-              : new Set<number>(),
+          items: persisted ? new Set(persisted.items) : new Set<number>(),
         };
       },
     }
