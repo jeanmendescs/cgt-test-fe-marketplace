@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { TProduct } from "@store/cartStore";
+import { formatPrice } from "@utils/currencyFormatter";
 import "./CartSummary.scss";
 import { Button } from "@components/Button";
 import useDialog from "@components/Dialog/hooks/useDialog";
@@ -48,7 +49,7 @@ function CartSummary({ products, total, onClearCart }: TCartSummary) {
                 {item.name}
               </span>
               <span data-testid="cart-summary-price">
-                ${item.price.toFixed(2)}
+                {formatPrice(item.price)}
               </span>
             </div>
           ))}
@@ -58,7 +59,7 @@ function CartSummary({ products, total, onClearCart }: TCartSummary) {
 
         <div className="cart-summary__total">
           <span>Total</span>
-          <span>${total.toFixed(2)}</span>
+          <span>{formatPrice(total)}</span>
         </div>
 
         <div className="cart-summary__actions">

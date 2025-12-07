@@ -10,6 +10,7 @@ module.exports = {
       "@data": path.resolve(__dirname, "src/data"),
       "@contexts": path.resolve(__dirname, "src/contexts"),
       "@styles": path.resolve(__dirname, "src/styles"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     },
     configure: (webpackConfig) => {
       // Find the existing rule for SVG files
@@ -63,6 +64,7 @@ module.exports = {
         "^@data/(.*)$": "<rootDir>/src/data/$1",
         "^@contexts/(.*)$": "<rootDir>/src/contexts/$1",
         "^@styles/(.*)$": "<rootDir>/src/styles/$1",
+        "^@utils/(.*)$": "<rootDir>/src/utils/$1",
       },
     },
   },

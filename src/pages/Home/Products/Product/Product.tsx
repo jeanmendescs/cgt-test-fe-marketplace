@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useCartStore, { TProduct } from "@store/cartStore";
+import { formatPrice } from "@utils/currencyFormatter";
 import "./Product.scss";
 import { Button } from "@components/Button";
 import { memo } from "react";
@@ -80,7 +81,7 @@ function Product({
           </div>
 
           <div className="product__footer">
-            <span className="product__price">${price.toFixed(2)}</span>
+            <span className="product__price">{formatPrice(price)}</span>
             {isInCart ? (
               <Button.Outlined
                 className="product__button"

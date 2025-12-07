@@ -1,4 +1,5 @@
 import useCartStore, { TProduct } from "@store/cartStore";
+import { formatPrice } from "@utils/currencyFormatter";
 import "./CartItem.scss";
 import { memo } from "react";
 
@@ -21,13 +22,13 @@ function CartItem({ id, name, price, image, alt }: TProduct) {
           <h2 title={name} className="cart-item__name">
             {name}
           </h2>
-          <p className="cart-item__price">${price.toFixed(2)}</p>
+          <p className="cart-item__price">{formatPrice(price)}</p>
         </div>
       </div>
 
       <div className="cart-item__subtotal">
         <span className="cart-item__subtotal-label">Subtotal</span>
-        <span className="cart-item__subtotal-value">${price.toFixed(2)}</span>
+        <span className="cart-item__subtotal-value">{formatPrice(price)}</span>
       </div>
 
       <button
