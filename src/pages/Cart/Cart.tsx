@@ -1,10 +1,10 @@
 import useCartStore, { TProduct } from "@store/cartStore";
 import useProducts from "@contexts/useProducts";
 import CartItem from "./CartItem/CartItem";
-import CartSummary from "./CartSummary/CartSummary";
 import CartEmpty from "./CartEmpty/CartEmpty";
 import "./Cart.scss";
 import { Helmet } from "react-helmet-async";
+import { CartSummary } from "@components/CartSummary/CartSummary";
 
 function CartPage() {
   const items = useCartStore((state) => state.items);
@@ -42,11 +42,10 @@ function CartPage() {
               ))}
             </div>
 
-            <CartSummary
-              products={cartProducts}
-              total={total}
-              onClearCart={clearCart}
-            />
+            <CartSummary.Root>
+              <CartSummary.Body products={cartProducts} total={total} />
+              <CartSummary.Actions onClearCart={clearCart} />
+            </CartSummary.Root>
           </div>
         </section>
       </main>
