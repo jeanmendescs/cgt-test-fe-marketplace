@@ -4,6 +4,7 @@ import CartItem from "./CartItem/CartItem";
 import CartSummary from "./CartSummary/CartSummary";
 import CartEmpty from "./CartEmpty/CartEmpty";
 import "./Cart.scss";
+import { Helmet } from "react-helmet-async";
 
 function CartPage() {
   const items = useCartStore((state) => state.items);
@@ -20,27 +21,36 @@ function CartPage() {
   }
 
   return (
-    <main>
-      <section className="cart-page__container">
-        <div className="cart-page__header">
-          <h1 className="cart-page__title">Your Cart</h1>
-        </div>
-
-        <div className="cart-page__content">
-          <div className="cart-page__items">
-            {cartProducts.map((item) => (
-              <CartItem key={item.id} {...item} />
-            ))}
+    <>
+      <Helmet>
+        <title>Your Cart - 90s Marketplace</title>
+        <meta
+          name="description"
+          content="Your shopping cart at 90s Marketplace"
+        />
+      </Helmet>
+      <main>
+        <section className="cart-page__container">
+          <div className="cart-page__header">
+            <h1 className="cart-page__title">Your Cart</h1>
           </div>
 
-          <CartSummary
-            products={cartProducts}
-            total={total}
-            onClearCart={clearCart}
-          />
-        </div>
-      </section>
-    </main>
+          <div className="cart-page__content">
+            <div className="cart-page__items">
+              {cartProducts.map((item) => (
+                <CartItem key={item.id} {...item} />
+              ))}
+            </div>
+
+            <CartSummary
+              products={cartProducts}
+              total={total}
+              onClearCart={clearCart}
+            />
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
 

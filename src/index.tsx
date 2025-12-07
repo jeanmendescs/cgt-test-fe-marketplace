@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import router from "./routes";
 import ErrorBoundary from "@components/ErrorBoundary/ErrorBoundary";
 
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );
