@@ -1,0 +1,32 @@
+@use "@styles/base/colors" as *;
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+}
+
+.loading__spinner {
+  width: 3.75rem;
+  height: 3.75rem;
+  border: 4px solid $white-color;
+  border-top-color: $red-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading__text {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  color: $black-color-100;
+  font-size: 0.875rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
