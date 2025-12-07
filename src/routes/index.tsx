@@ -1,10 +1,15 @@
+import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "@components/Layout/Layout";
-import HomePage from "@pages/Home/Home";
-import CartPage from "@pages/Cart/Cart";
-import ProductDetailPage from "@pages/ProductDetail/ProductDetail";
-import NotFoundPage from "@pages/NotFound/NotFound";
 import "../styles/main.scss";
+
+// Lazy load routes for code splitting
+const HomePage = lazy(() => import("@pages/Home/Home"));
+const CartPage = lazy(() => import("@pages/Cart/Cart"));
+const ProductDetailPage = lazy(
+  () => import("@pages/ProductDetail/ProductDetail")
+);
+const NotFoundPage = lazy(() => import("@pages/NotFound/NotFound"));
 
 const router = createBrowserRouter([
   {
