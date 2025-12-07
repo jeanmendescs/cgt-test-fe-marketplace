@@ -1,0 +1,35 @@
+@use "@styles/base/colors" as *;
+@use "@styles/base/breakpoints" as *;
+
+.cart-summary {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba($white-color, 0.08) 0%,
+    rgba($white-color, 0.03) 100%
+  );
+  border: 1px solid rgba($white-color, 0.15);
+  border-radius: 12px;
+}
+
+@media (max-width: $breakpoint-lg) {
+  .cart-summary {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .cart-summary {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .cart-summary {
+    padding: 1.5rem;
+  }
+}
