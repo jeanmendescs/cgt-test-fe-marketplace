@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor, act } from "@testing-library/react";
 import useCartStore from "./cartStore";
 
 describe("cartStore", () => {
@@ -31,7 +31,9 @@ describe("cartStore", () => {
     it("should add a product to the cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.items.has(1)).toBe(true);
@@ -42,9 +44,11 @@ describe("cartStore", () => {
     it("should add multiple products to the cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(2);
-      result.current.addToCart(3);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(2);
+        result.current.addToCart(3);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(3);
@@ -57,9 +61,11 @@ describe("cartStore", () => {
     it("should not allow duplicate products (Set behavior)", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(1);
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(1);
@@ -72,9 +78,11 @@ describe("cartStore", () => {
     it("should remove a product from the cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(2);
-      result.current.removeFromCart(1);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(2);
+        result.current.removeFromCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(1);
@@ -86,10 +94,12 @@ describe("cartStore", () => {
     it("should remove a product when it exists", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(1);
-      result.current.addToCart(1);
-      result.current.removeFromCart(1);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+        result.current.removeFromCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(0);
@@ -100,8 +110,10 @@ describe("cartStore", () => {
     it("should handle removing a non-existent product gracefully", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.removeFromCart(999);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.removeFromCart(999);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(1);
@@ -112,7 +124,9 @@ describe("cartStore", () => {
     it("should handle removing from an empty cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.removeFromCart(1);
+      act(() => {
+        result.current.removeFromCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(0);
@@ -124,7 +138,9 @@ describe("cartStore", () => {
     it("should return true when product is in cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.isInCart(1)).toBe(true);
@@ -134,7 +150,9 @@ describe("cartStore", () => {
     it("should return false when product is not in cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.isInCart(2)).toBe(false);
@@ -150,9 +168,11 @@ describe("cartStore", () => {
     it("should return true when product is added multiple times", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(1);
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.isInCart(1)).toBe(true);
@@ -170,7 +190,9 @@ describe("cartStore", () => {
     it("should return correct quantity for single item", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.getTotalQuantity()).toBe(1);
@@ -180,9 +202,11 @@ describe("cartStore", () => {
     it("should return correct quantity for multiple different items", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(2);
-      result.current.addToCart(3);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(2);
+        result.current.addToCart(3);
+      });
 
       await waitFor(() => {
         expect(result.current.getTotalQuantity()).toBe(3);
@@ -192,9 +216,11 @@ describe("cartStore", () => {
     it("should return 1 when same item added multiple times (Set behavior)", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(1);
-      result.current.addToCart(1);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+        result.current.addToCart(1);
+      });
 
       await waitFor(() => {
         expect(result.current.getTotalQuantity()).toBe(1);
@@ -204,10 +230,12 @@ describe("cartStore", () => {
     it("should update quantity after removing items", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(2);
-      result.current.addToCart(3);
-      result.current.removeFromCart(2);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(2);
+        result.current.addToCart(3);
+        result.current.removeFromCart(2);
+      });
 
       await waitFor(() => {
         expect(result.current.getTotalQuantity()).toBe(2);
@@ -219,10 +247,12 @@ describe("cartStore", () => {
     it("should clear all items from the cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.addToCart(1);
-      result.current.addToCart(2);
-      result.current.addToCart(3);
-      result.current.clearCart();
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(2);
+        result.current.addToCart(3);
+        result.current.clearCart();
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(0);
@@ -233,7 +263,9 @@ describe("cartStore", () => {
     it("should handle clearing an already empty cart", async () => {
       const { result } = renderHook(() => useCartStore());
 
-      result.current.clearCart();
+      act(() => {
+        result.current.clearCart();
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(0);
@@ -246,9 +278,11 @@ describe("cartStore", () => {
       const { result } = renderHook(() => useCartStore());
 
       // Add items
-      result.current.addToCart(1);
-      result.current.addToCart(2);
-      result.current.addToCart(3);
+      act(() => {
+        result.current.addToCart(1);
+        result.current.addToCart(2);
+        result.current.addToCart(3);
+      });
 
       await waitFor(() => {
         expect(result.current.getTotalQuantity()).toBe(3);
@@ -258,7 +292,9 @@ describe("cartStore", () => {
       expect(result.current.isInCart(3)).toBe(true);
 
       // Remove one item
-      result.current.removeFromCart(2);
+      act(() => {
+        result.current.removeFromCart(2);
+      });
 
       await waitFor(() => {
         expect(result.current.getTotalQuantity()).toBe(2);
@@ -268,8 +304,10 @@ describe("cartStore", () => {
       expect(result.current.isInCart(3)).toBe(true);
 
       // Add more items
-      result.current.addToCart(4);
-      result.current.addToCart(5);
+      act(() => {
+        result.current.addToCart(4);
+        result.current.addToCart(5);
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(4);
@@ -281,7 +319,9 @@ describe("cartStore", () => {
       expect(result.current.items.has(5)).toBe(true);
 
       // Clear cart
-      result.current.clearCart();
+      act(() => {
+        result.current.clearCart();
+      });
 
       await waitFor(() => {
         expect(result.current.items.size).toBe(0);

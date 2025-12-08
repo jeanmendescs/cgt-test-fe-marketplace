@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useForm, Controller } from "react-hook-form";
-import { PatternFormat } from "react-number-format";
+import { PatternFormat, NumericFormat } from "react-number-format";
 import useCartStore, { TProduct } from "@store/cartStore";
 import useProducts from "@contexts/useProducts";
 import { Button } from "@components/Button";
@@ -301,38 +301,44 @@ function Checkout() {
                       <label htmlFor="zipCode" className="checkout-form__label">
                         ZIP Code *
                       </label>
-                      <input
-                        type="tel"
-                        inputMode="numeric"
-                        id="zipCode"
-                        {...(() => {
-                          const { onChange, ...rest } = register("zipCode", {
-                            required: "ZIP code is required",
-                            pattern: {
-                              value: /^\d+$/,
-                              message: "ZIP code must contain only numbers",
-                            },
-                            minLength: {
-                              value: 5,
-                              message: "ZIP code must be at least 5 digits",
-                            },
-                          });
-                          return {
-                            ...rest,
-                            onChange: createFormattedHandler(
-                              formatNumericOnly,
-                              "zipCode",
-                              onChange
-                            ),
-                          };
-                        })()}
-                        className={`checkout-form__input ${
-                          errors.zipCode ? "checkout-form__input--error" : ""
-                        }`}
-                        aria-invalid={!!errors.zipCode}
-                        aria-describedby={
-                          errors.zipCode ? "zipCode-error" : undefined
-                        }
+                      <Controller
+                        name="zipCode"
+                        control={control}
+                        rules={{
+                          required: "ZIP code is required",
+                          pattern: {
+                            value: /^\d+$/,
+                            message: "ZIP code must contain only numbers",
+                          },
+                          minLength: {
+                            value: 5,
+                            message: "ZIP code must be at least 5 digits",
+                          },
+                        }}
+                        render={({ field, fieldState }) => {
+                          const { ref, onChange, ...fieldProps } = field;
+                          return (
+                            <PatternFormat
+                              {...fieldProps}
+                              getInputRef={ref}
+                              id="zipCode"
+                              format="#####"
+                              allowEmptyFormatting
+                              onValueChange={(values) => {
+                                onChange(values.value);
+                              }}
+                              className={`checkout-form__input ${
+                                fieldState.error
+                                  ? "checkout-form__input--error"
+                                  : ""
+                              }`}
+                              aria-invalid={!!fieldState.error}
+                              aria-describedby={
+                                fieldState.error ? "zipCode-error" : undefined
+                              }
+                            />
+                          );
+                        }}
                       />
                       {errors.zipCode && (
                         <span
@@ -393,39 +399,44 @@ function Checkout() {
                     >
                       Card Number *
                     </label>
-                    <input
-                      type="tel"
-                      inputMode="numeric"
-                      id="cardNumber"
-                      {...(() => {
-                        const { onChange, ...rest } = register("cardNumber", {
-                          required: "Card number is required",
-                          validate: (value) => {
-                            const cleaned = value.replace(/\s/g, "");
-                            if (!/^\d{13,19}$/.test(cleaned)) {
-                              return "Please enter a valid card number (13-16 digits)";
+                    <Controller
+                      name="cardNumber"
+                      control={control}
+                      rules={{
+                        required: "Card number is required",
+                        validate: (value) => {
+                          const cleaned = value.replace(/\s/g, "");
+                          if (!/^\d{13,19}$/.test(cleaned)) {
+                            return "Please enter a valid card number (13-16 digits)";
+                          }
+                          return true;
+                        },
+                      }}
+                      render={({ field, fieldState }) => {
+                        const { ref, onChange, ...fieldProps } = field;
+                        return (
+                          <PatternFormat
+                            {...fieldProps}
+                            getInputRef={ref}
+                            id="cardNumber"
+                            format="#### #### #### ####"
+                            allowEmptyFormatting
+                            placeholder="1234 5678 9012 3456"
+                            onValueChange={(values) => {
+                              onChange(values.value);
+                            }}
+                            className={`checkout-form__input ${
+                              fieldState.error
+                                ? "checkout-form__input--error"
+                                : ""
+                            }`}
+                            aria-invalid={!!fieldState.error}
+                            aria-describedby={
+                              fieldState.error ? "cardNumber-error" : undefined
                             }
-                            return true;
-                          },
-                        });
-                        return {
-                          ...rest,
-                          onChange: createFormattedHandler(
-                            formatCardNumber,
-                            "cardNumber",
-                            onChange
-                          ),
-                        };
-                      })()}
-                      placeholder="1234 5678 9012 3456"
-                      maxLength={19}
-                      className={`checkout-form__input ${
-                        errors.cardNumber ? "checkout-form__input--error" : ""
-                      }`}
-                      aria-invalid={!!errors.cardNumber}
-                      aria-describedby={
-                        errors.cardNumber ? "cardNumber-error" : undefined
-                      }
+                          />
+                        );
+                      }}
                     />
                     {errors.cardNumber && (
                       <span
@@ -565,34 +576,47 @@ function Checkout() {
                       <label htmlFor="cvv" className="checkout-form__label">
                         CVV *
                       </label>
-                      <input
-                        type="tel"
-                        inputMode="numeric"
-                        id="cvv"
-                        {...(() => {
-                          const { onChange, ...rest } = register("cvv", {
-                            required: "CVV is required",
-                            pattern: {
-                              value: /^\d{3,4}$/,
-                              message: "Please enter a valid CVV (3-4 digits)",
-                            },
-                          });
-                          return {
-                            ...rest,
-                            onChange: createFormattedHandler(
-                              formatNumericOnly,
-                              "cvv",
-                              onChange
-                            ),
-                          };
-                        })()}
-                        placeholder="1234"
-                        maxLength={4}
-                        className={`checkout-form__input ${
-                          errors.cvv ? "checkout-form__input--error" : ""
-                        }`}
-                        aria-invalid={!!errors.cvv}
-                        aria-describedby={errors.cvv ? "cvv-error" : undefined}
+                      <Controller
+                        name="cvv"
+                        control={control}
+                        rules={{
+                          required: "CVV is required",
+                          pattern: {
+                            value: /^\d{3,4}$/,
+                            message: "Please enter a valid CVV (3-4 digits)",
+                          },
+                        }}
+                        render={({ field, fieldState }) => {
+                          const { ref, onChange, ...fieldProps } = field;
+                          return (
+                            <NumericFormat
+                              {...fieldProps}
+                              getInputRef={ref}
+                              id="cvv"
+                              allowLeadingZeros
+                              isAllowed={(values) => {
+                                const { floatValue } = values;
+                                return (
+                                  floatValue === undefined ||
+                                  (floatValue >= 0 && floatValue <= 9999)
+                                );
+                              }}
+                              placeholder="1234"
+                              onValueChange={(values) => {
+                                onChange(values.value);
+                              }}
+                              className={`checkout-form__input ${
+                                fieldState.error
+                                  ? "checkout-form__input--error"
+                                  : ""
+                              }`}
+                              aria-invalid={!!fieldState.error}
+                              aria-describedby={
+                                fieldState.error ? "cvv-error" : undefined
+                              }
+                            />
+                          );
+                        }}
                       />
                       {errors.cvv && (
                         <span

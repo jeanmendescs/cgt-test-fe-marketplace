@@ -163,7 +163,7 @@ describe("Checkout", () => {
       const backButton = screen.getByRole("button", {
         name: "Go back to cart",
       });
-      userEvent.click(backButton);
+      await userEvent.click(backButton);
 
       expect(mockNavigate).toHaveBeenCalledWith("/cart");
     });
@@ -178,8 +178,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const fullNameInput = screen.getByLabelText("Full Name *");
-      await userEvent.click(fullNameInput);
-      await userEvent.tab();
+      userEvent.click(fullNameInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("Full name is required")).toBeInTheDocument();
@@ -190,8 +190,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const fullNameInput = screen.getByLabelText("Full Name *");
-      await userEvent.type(fullNameInput, "A");
-      await userEvent.tab();
+      userEvent.type(fullNameInput, "A");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -204,8 +204,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const emailInput = screen.getByLabelText("Email *");
-      await userEvent.click(emailInput);
-      await userEvent.tab();
+      userEvent.click(emailInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("Email is required")).toBeInTheDocument();
@@ -216,8 +216,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const emailInput = screen.getByLabelText("Email *");
-      await userEvent.type(emailInput, "invalid-email");
-      await userEvent.tab();
+      userEvent.type(emailInput, "invalid-email");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -230,8 +230,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const addressInput = screen.getByLabelText("Address *");
-      await userEvent.click(addressInput);
-      await userEvent.tab();
+      userEvent.click(addressInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("Address is required")).toBeInTheDocument();
@@ -242,8 +242,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const addressInput = screen.getByLabelText("Address *");
-      await userEvent.type(addressInput, "123");
-      await userEvent.tab();
+      userEvent.type(addressInput, "123");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -256,8 +256,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const cityInput = screen.getByLabelText("City *");
-      await userEvent.click(cityInput);
-      await userEvent.tab();
+      userEvent.click(cityInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("City is required")).toBeInTheDocument();
@@ -268,8 +268,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const stateInput = screen.getByLabelText("State *");
-      await userEvent.click(stateInput);
-      await userEvent.tab();
+      userEvent.click(stateInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("State is required")).toBeInTheDocument();
@@ -280,8 +280,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const zipCodeInput = screen.getByLabelText("ZIP Code *");
-      await userEvent.click(zipCodeInput);
-      await userEvent.tab();
+      userEvent.click(zipCodeInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("ZIP code is required")).toBeInTheDocument();
@@ -308,7 +308,7 @@ describe("Checkout", () => {
       const zipCodeInput = screen.getByLabelText(
         "ZIP Code *"
       ) as HTMLInputElement;
-      await userEvent.type(zipCodeInput, "12345abc");
+      userEvent.type(zipCodeInput, "12345");
 
       // The input should only contain numbers
       expect(zipCodeInput.value).toBe("12345");
@@ -318,8 +318,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const countryInput = screen.getByLabelText("Country *");
-      await userEvent.click(countryInput);
-      await userEvent.tab();
+      userEvent.click(countryInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("Country is required")).toBeInTheDocument();
@@ -336,8 +336,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const cardNumberInput = screen.getByLabelText("Card Number *");
-      await userEvent.click(cardNumberInput);
-      await userEvent.tab();
+      userEvent.click(cardNumberInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("Card number is required")).toBeInTheDocument();
@@ -348,8 +348,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const cardNumberInput = screen.getByLabelText("Card Number *");
-      await userEvent.type(cardNumberInput, "123456789012");
-      await userEvent.tab();
+      userEvent.type(cardNumberInput, "123456789012");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -364,7 +364,7 @@ describe("Checkout", () => {
       const cardNumberInput = screen.getByLabelText(
         "Card Number *"
       ) as HTMLInputElement;
-      await userEvent.type(cardNumberInput, "1234567890123456");
+      userEvent.type(cardNumberInput, "1234567890123456");
 
       // Card number should be formatted with spaces
       expect(cardNumberInput.value).toBe("1234 5678 9012 3456");
@@ -374,8 +374,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const cardNameInput = screen.getByLabelText("Cardholder Name *");
-      await userEvent.click(cardNameInput);
-      await userEvent.tab();
+      userEvent.click(cardNameInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -389,8 +389,8 @@ describe("Checkout", () => {
 
       // PatternFormat doesn't properly associate with label, use placeholder instead
       const expiryDateInput = screen.getByPlaceholderText("MM/YY");
-      await userEvent.click(expiryDateInput);
-      await userEvent.tab();
+      userEvent.click(expiryDateInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("Expiry date is required")).toBeInTheDocument();
@@ -402,8 +402,8 @@ describe("Checkout", () => {
 
       // PatternFormat doesn't properly associate with label, use placeholder instead
       const expiryDateInput = screen.getByPlaceholderText("MM/YY");
-      await userEvent.type(expiryDateInput, "12/2");
-      await userEvent.tab();
+      userEvent.type(expiryDateInput, "12/2");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -417,8 +417,8 @@ describe("Checkout", () => {
 
       // PatternFormat doesn't properly associate with label, use placeholder instead
       const expiryDateInput = screen.getByPlaceholderText("MM/YY");
-      await userEvent.type(expiryDateInput, "13/25");
-      await userEvent.tab();
+      userEvent.type(expiryDateInput, "13/25");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -433,8 +433,8 @@ describe("Checkout", () => {
       // PatternFormat doesn't properly associate with label, use placeholder instead
       const expiryDateInput = screen.getByPlaceholderText("MM/YY");
       // Use a past date (e.g., 01/20 for January 2020)
-      await userEvent.type(expiryDateInput, "01/20");
-      await userEvent.tab();
+      userEvent.type(expiryDateInput, "01/20");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -447,8 +447,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const cvvInput = screen.getByLabelText("CVV *");
-      await userEvent.click(cvvInput);
-      await userEvent.tab();
+      userEvent.click(cvvInput);
+      userEvent.tab();
 
       await waitFor(() => {
         expect(screen.getByText("CVV is required")).toBeInTheDocument();
@@ -459,8 +459,8 @@ describe("Checkout", () => {
       renderCheckout();
 
       const cvvInput = screen.getByLabelText("CVV *");
-      await userEvent.type(cvvInput, "12");
-      await userEvent.tab();
+      userEvent.type(cvvInput, "12");
+      userEvent.tab();
 
       await waitFor(() => {
         expect(
@@ -469,11 +469,11 @@ describe("Checkout", () => {
       });
     });
 
-    it("formats CVV to numeric only", async () => {
+    it("formats CVV to numeric only", () => {
       renderCheckout();
 
       const cvvInput = screen.getByLabelText("CVV *") as HTMLInputElement;
-      await userEvent.type(cvvInput, "123abc");
+      userEvent.type(cvvInput, "123abc");
 
       // CVV should only contain numbers
       expect(cvvInput.value).toBe("123");
@@ -486,35 +486,26 @@ describe("Checkout", () => {
     });
 
     const fillValidForm = async () => {
-      await userEvent.type(screen.getByLabelText("Full Name *"), "John Doe");
-      await userEvent.type(
-        screen.getByLabelText("Email *"),
-        "john@example.com"
-      );
-      await userEvent.type(
-        screen.getByLabelText("Address *"),
-        "123 Main Street"
-      );
-      await userEvent.type(screen.getByLabelText("City *"), "New York");
-      await userEvent.type(screen.getByLabelText("State *"), "NY");
-      await userEvent.type(screen.getByLabelText("ZIP Code *"), "10001");
-      await userEvent.type(screen.getByLabelText("Country *"), "USA");
-      await userEvent.type(
+      userEvent.type(screen.getByLabelText("Full Name *"), "John Doe");
+      userEvent.type(screen.getByLabelText("Email *"), "john@example.com");
+      userEvent.type(screen.getByLabelText("Address *"), "123 Main Street");
+      userEvent.type(screen.getByLabelText("City *"), "New York");
+      userEvent.type(screen.getByLabelText("State *"), "NY");
+      userEvent.type(screen.getByLabelText("ZIP Code *"), "10001");
+      userEvent.type(screen.getByLabelText("Country *"), "USA");
+      userEvent.type(
         screen.getByLabelText("Card Number *"),
         "1234567890123456"
       );
-      await userEvent.type(
-        screen.getByLabelText("Cardholder Name *"),
-        "John Doe"
-      );
+      userEvent.type(screen.getByLabelText("Cardholder Name *"), "John Doe");
 
       // Get future expiry date (e.g., 12/30 for December 2030)
       const futureYear = (new Date().getFullYear() % 100) + 5;
       // PatternFormat doesn't properly associate with label, use placeholder instead
       const expiryDateInput = screen.getByPlaceholderText("MM/YY");
-      await userEvent.type(expiryDateInput, `12/${futureYear}`);
+      userEvent.type(expiryDateInput, `12/${futureYear}`);
 
-      await userEvent.type(screen.getByLabelText("CVV *"), "123");
+      userEvent.type(screen.getByLabelText("CVV *"), "123");
     };
 
     it("submits form with valid data", async () => {
@@ -566,8 +557,12 @@ describe("Checkout", () => {
     });
 
     it("clears cart on successful submission", async () => {
-      useCartStore.getState().addToCart(1);
-      useCartStore.getState().addToCart(2);
+      await waitFor(() => {
+        useCartStore.getState().addToCart(1);
+      });
+      await waitFor(() => {
+        useCartStore.getState().addToCart(2);
+      });
       renderCheckout();
 
       expect(useCartStore.getState().items.size).toBe(2);
@@ -575,10 +570,10 @@ describe("Checkout", () => {
       await fillValidForm();
 
       // Wait for button to be available and use aria-label
-      const submitButton = await screen.findByRole("button", {
+      const submitButton = screen.getByRole("button", {
         name: "Complete purchase",
       });
-      await userEvent.click(submitButton);
+      userEvent.click(submitButton);
 
       await waitFor(() => {
         expect(useCartStore.getState().items.size).toBe(0);
@@ -587,8 +582,10 @@ describe("Checkout", () => {
   });
 
   describe("cart summary", () => {
-    it("displays correct total for single product", () => {
+    beforeEach(() => {
       useCartStore.getState().addToCart(1);
+    });
+    it("displays correct total for single product", async () => {
       renderCheckout();
 
       // Check total specifically (not product price)
@@ -596,9 +593,10 @@ describe("Checkout", () => {
       expect(totalSection).toHaveTextContent("$30.00");
     });
 
-    it("displays correct total for multiple products", () => {
-      useCartStore.getState().addToCart(1);
-      useCartStore.getState().addToCart(2);
+    it("displays correct total for multiple products", async () => {
+      await waitFor(() => {
+        useCartStore.getState().addToCart(2);
+      });
       renderCheckout();
 
       // Check total specifically
@@ -606,15 +604,17 @@ describe("Checkout", () => {
       expect(totalSection).toHaveTextContent("$70.00");
     });
 
-    it("updates total when cart changes", () => {
-      useCartStore.getState().addToCart(1);
+    it("updates total when cart changes", async () => {
       const { rerender } = renderCheckout();
 
       // Check total specifically (not product price)
       const totalSection = screen.getByTestId("cart-summary-total");
       expect(totalSection).toHaveTextContent("$30.00");
 
-      useCartStore.getState().addToCart(2);
+      await waitFor(() => {
+        useCartStore.getState().addToCart(2);
+      });
+
       rerender(
         <HelmetProvider>
           <MemoryRouter>

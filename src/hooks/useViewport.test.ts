@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor, act } from "@testing-library/react";
 import useViewport from "./useViewport";
 import { breakpoints } from "constants/constants";
 
@@ -287,7 +287,9 @@ describe("useViewport", () => {
         configurable: true,
         value: 1000,
       });
-      window.dispatchEvent(new Event("resize"));
+      act(() => {
+        window.dispatchEvent(new Event("resize"));
+      });
 
       await waitFor(() => {
         expect(result.current).toBe(true); // 1000 >= 900
@@ -311,7 +313,9 @@ describe("useViewport", () => {
         configurable: true,
         value: 1000,
       });
-      window.dispatchEvent(new Event("resize"));
+      act(() => {
+        window.dispatchEvent(new Event("resize"));
+      });
 
       await waitFor(() => {
         expect(result.current).toBe(true); // 1000 >= 900
@@ -323,7 +327,9 @@ describe("useViewport", () => {
         configurable: true,
         value: 800,
       });
-      window.dispatchEvent(new Event("resize"));
+      act(() => {
+        window.dispatchEvent(new Event("resize"));
+      });
 
       await waitFor(() => {
         expect(result.current).toBe(false); // 800 < 900
