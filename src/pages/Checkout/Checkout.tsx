@@ -306,24 +306,37 @@ function Checkout() {
                         control={control}
                         rules={{
                           required: "ZIP code is required",
-                          pattern: {
-                            value: /^\d+$/,
-                            message: "ZIP code must contain only numbers",
-                          },
-                          minLength: {
-                            value: 5,
-                            message: "ZIP code must be at least 5 digits",
+                          validate: (value) => {
+                            if (!value) {
+                              return "ZIP code is required";
+                            }
+                            if (!/^\d+$/.test(value)) {
+                              return "ZIP code must contain only numbers";
+                            }
+                            if (value.length < 5) {
+                              return "ZIP code must be at least 5 digits";
+                            }
+                            if (value.length > 10) {
+                              return "ZIP code must be at most 10 digits";
+                            }
+                            return true;
                           },
                         }}
                         render={({ field, fieldState }) => {
                           const { ref, onChange, ...fieldProps } = field;
                           return (
-                            <PatternFormat
+                            <NumericFormat
                               {...fieldProps}
                               getInputRef={ref}
                               id="zipCode"
-                              format="#####"
-                              allowEmptyFormatting
+                              allowLeadingZeros
+                              isAllowed={(values) => {
+                                const { floatValue } = values;
+                                return (
+                                  floatValue === undefined ||
+                                  (floatValue >= 0 && floatValue <= 9999999999)
+                                );
+                              }}
                               onValueChange={(values) => {
                                 onChange(values.value);
                               }}
