@@ -7,6 +7,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .contained-button {
+    padding: 1rem 2.5rem;
+    border-radius: 4px;
+    margin: auto;
+  }
 }
 
 .not-found-page__container {
@@ -52,11 +58,6 @@
   animation: fadeIn 0.8s ease-out 0.4s both;
 }
 
-.contained-button {
-  padding: 1rem 2.5rem;
-  border-radius: 4px;
-}
-
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -96,6 +97,12 @@
 }
 
 @media (max-width: $breakpoint-sm) {
+  .not-found-page {
+    .contained-button {
+      padding: 0.875rem 2rem;
+    }
+  }
+
   .not-found-page__container {
     padding: 1.5rem 1rem;
   }
@@ -110,9 +117,5 @@
 
   .not-found-page__message {
     margin-bottom: 1.5rem;
-  }
-
-  .contained-button {
-    padding: 0.875rem 2rem;
   }
 }
